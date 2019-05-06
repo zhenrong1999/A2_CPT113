@@ -7,17 +7,13 @@
 //
 
 #include "stack.hpp"
-template <class Type> stack<Type>::stack() { initialize(); }
-template <class Type> stack<Type>::~stack() {}
+template <class Type> stack<Type>::stack() { top_stack = bottom_stack = NULL; }
+template <class Type> stack<Type>::~stack() { initialize(); }
 template <class Type> void stack<Type>::initialize() {
   if (!is_empty()) {
-    nodeType<Type> *todelete;
     while (!is_empty()) {
-      todelete = top_stack;
-      top_stack = top_stack->next_node;
-      delete todelete;
+      pop();
     }
-    top_stack = bottom_stack = NULL;
   }
 }
 template <class Type> bool stack<Type>::is_empty() {
@@ -37,19 +33,17 @@ template <class Type> void stack<Type>::push(Type input_content) {
   }
 }
 template <class Type> void stack<Type>::pop() {
-if(is_empty())
-{
-  std::cerr << "The stack is empty. Nothing to " << '\n';
-  return;
-}
-  nodeType<Type> *to_be_deleted = new nodeType<Type>;
-  to_be_deleted=top_stack;
-  top_stack=top_stack->next_node;
-  delete to_be_deleted;
-  total_number_of_stack--;
-  if(top_stack==NULL)
-  {
-    bottom_stack=top_stack;
+  if (is_empty()) {
+    std::cerr << "The stack is empty. Nothing to be pop out." << '\n';
+  } else {
+    nodeType<Type> *to_be_deleted = new nodeType<Type>;
+    to_be_deleted = top_stack;
+    top_stack = top_stack->next_node;
+    delete to_be_deleted;
+    total_number_of_stack--;
+    if (top_stack == NULL) {
+      bottom_stack = top_stack;
+    }
   }
 }
-template <class Type> Type stack<Type>::top() {}
+template <class Type> Type stack<Type>::top() { return top_stack->content; }

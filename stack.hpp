@@ -16,8 +16,8 @@ template <class Type>
 class stack {
 protected:
 int total_number_of_stack=0;
-nodeType<Type> bottom_stack;
-nodeType<Type> top_stack;
+nodeType<Type> *bottom_stack;
+nodeType<Type> *top_stack;
 
 public:
     stack();
