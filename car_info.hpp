@@ -9,7 +9,8 @@
 #ifndef car_info_hpp
 #define car_info_hpp
 #include <iostream>
-
+#include "book_info.hpp"
+#include "mystack.hpp"
 using namespace std;
 
 class car_info {
@@ -19,13 +20,20 @@ protected:
   string color;
   float rental_prize;
   float rental_sale = 0;
-
+  mystack<book_info> booking_list;
 public:
   void display();
   car_info();
   car_info(string,string,string,float);
   ~car_info();
-
+  string getplat_no();
+  void change(string,string,string,float);
+  bool operator==(car_info &comparing);
+  bool operator!=(car_info &comparing);
+  bool operator>=(car_info &comparing);
+  bool operator<=(car_info &comparing);
+  bool operator>(car_info &comparing);
+  bool operator<(car_info &comparing);
 };
 
 #endif /* car_info_hpp */

@@ -7,6 +7,10 @@
 //
 
 #include "ordered_linked_list.hpp"
+template class ordered_linked_list<int>;
+//template class ordered_linked_list<car_info>;
+template class ordered_linked_list<string>;
+
 template <class Type> ordered_linked_list<Type>::ordered_linked_list() {
   first_node = NULL;
   last_node = NULL;
@@ -33,16 +37,17 @@ template <class Type> int ordered_linked_list<Type>::length_of_list() {
 }
 
 template <class Type> Type ordered_linked_list<Type>::get_item(int index) {
-  if (index < total_number_of_node && index > -1) {
+  if (index > total_number_of_node && index < -1) {
+    std::cout << "The index is not in the list which may cause " << '\n';
+  } else {
     nodeType<Type> *current;
     current = first_node;
     for (int i = 0; i < index; i++)
       current = current->next_node;
     return current->content;
-  } else {
-    std::cout << "The index is not in the list which may cause " << '\n';
   }
 }
+
 template <class Type>
 void ordered_linked_list<Type>::insert_item(Type input_content) {
   if (is_empty()) {
@@ -161,4 +166,36 @@ void ordered_linked_list<Type>::copy_from(ordered_linked_list<Type> original) {
   previous_of_current->next_node = NULL;
   delete current;
   total_number_of_node = original.length_of_list();
+}
+
+template <class Type>
+int ordered_linked_list<Type>::binary_search(Type to_search) {
+  nodeType<Type> *start_node=first_node;
+  nodeType<Type> *slow_ptr = first_node;
+  nodeType<Type> *fast_ptr = first_node;
+  nodeType<Type> *end_node=NULL;
+  int count=0;
+  int count_previous=0;
+  do{
+  while (fast_ptr != end_node && fast_ptr->next_node != end_node) {
+    fast_ptr = fast_ptr->next_node->next_node;
+    slow_ptr = slow_ptr->next_node;
+    count++;
+  }
+  if(slow_ptr==fast_ptr && slow_ptr->content != to_search)
+    return -1;
+  else if(slow_ptr->content < to_search)
+    {
+      end_node=fast_ptr->next_node;
+      slow_ptr=start_node=fast_ptr=(slow_ptr->next_node);
+      count_previous=++count;
+    }
+    else if(slow_ptr->content > to_search)
+    {
+      end_node=slow_ptr ;
+      fast_ptr=slow_ptr=start_node;
+      count=count_previous;
+    }
+}while(slow_ptr->content != to_search);
+  return count;
 }

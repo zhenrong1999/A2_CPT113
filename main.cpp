@@ -1,14 +1,28 @@
-//#include "car_info.hpp"
-#include "book_info.hpp"
-#include "car_info.hpp"
+#include "main.hpp"
 
-int main() {
-  car_info car1("PBU6629", "Proton Saga", "white", 100);
-  car1.display();
-  char ic[12]={'9','9','0','4','2','2','0','7','6','6','7','7'};
-  char phone[]={'0','1','2','3','4','5','6','7','8','9'};
-  book_info acb(ic, "Teh Zhen Rong", phone, 12092019, 1,"Proton Saga", 100);
-  ic[0]='a';
-  phone[0]='a';
-  acb.display();
+
+void read_raw_info(queue<std::string> to_stored, std::string file_to_open) {
+  std::ifstream openfile;
+  openfile.open(file_to_open, std::ios::in);
+  if (!openfile.is_open()) {
+    std::cerr << "Unable to open file named "<< file_to_open <<"!\n";
+  } else {
+    std::string line;
+    while (std::getline(openfile, line)) {
+      to_stored.addQueue(line);
+    }
+    openfile.close();
+  }
+}
+
+
+
+int main()
+{
+  ordered_linked_list<car_info> car_database;
+  car_info *abc=new car_info;
+  //abc->change("PBU6629","Proton Saga","Red",120);
+  car_database.insert_item(*abc);
+  car_database.get_item(0).display();
+
 }

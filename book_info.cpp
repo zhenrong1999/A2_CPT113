@@ -8,20 +8,15 @@
 
 #include "book_info.hpp"
 
-book_info::book_info(char IC_number_in[], string name_in,
-                     char Phone_number_in[],
+book_info::book_info() {}
+book_info::book_info(string IC_number_in, string name_in,
+                     string Phone_number_in,
                      int date_in,             // use time lib??
                      int renting_duration_in, // Unit in day
                      string car_model_in, float total_rental_fee_in) {
-  int IC_number_length = 9;
-  int Phone_number_in_length = 9;
-  IC_number = new char[IC_number_length];
-  for (int i = 0; i < IC_number_length; i++)
-    IC_number[i] = IC_number_in[i];
+  IC_number = IC_number_in;
   name = name_in;
-  Phone_number = new char[Phone_number_in_length];
-  for (int i = 0; i < Phone_number_in_length; i++)
-    Phone_number[i] = Phone_number_in[i];
+  Phone_number = Phone_number_in;
   date = date;
   renting_duration = renting_duration_in;
   car_model = car_model_in;

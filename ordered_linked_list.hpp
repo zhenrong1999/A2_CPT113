@@ -10,11 +10,12 @@
 #define ordered_linked_list_hpp
 
 #include "nodeType.hpp"
+#include "car_info.hpp"
 /**
  * The linked list that will always in order.
  */
 template <class Type>
-class ordered_linked_list {
+class ordered_linked_list :protected::car_info {
 private:
   nodeType<Type> *first_node;
   nodeType<Type> *last_node;
@@ -29,6 +30,7 @@ public:
     void delete_index(int index); //Delete the content/item/node in the linked list with given index(position of the content/item/node).
     void delete_item(Type);  //Delete the content/item/node in the linked list with given content/item/node
     void copy_from(ordered_linked_list<Type>);  //copy the whole list to another linked list.
+    int binary_search(Type);//binary search for the plat number
 protected:
 
 };

@@ -6,30 +6,31 @@
 //
 //
 
-#ifndef stack_hpp
-#define stack_hpp
+#ifndef mystack_hpp
+#define mystack_hpp
 
 #include <iostream>
 #include "nodeType.hpp"
+#include "book_info.hpp"
 
 template <class Type>
-class stack {
+class mystack {
 protected:
 int total_number_of_stack=0;
 nodeType<Type> *bottom_stack;
 nodeType<Type> *top_stack;
 
 public:
-    stack();
-    ~stack();
+    mystack();
+    ~mystack();
     void initialize();
     void push(Type input_content);
     void pop();
     bool is_empty();
     Type top();
-
+    int stack_height();
 
 };
 
 
-#endif /* stack_hpp */
+#endif /* mystack_hpp */
