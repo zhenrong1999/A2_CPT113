@@ -8,7 +8,7 @@
 
 #include "ordered_linked_list.hpp"
 template class ordered_linked_list<int>;
-//template class ordered_linked_list<car_info>;
+template class ordered_linked_list<car_info>;
 template class ordered_linked_list<string>;
 
 template <class Type> ordered_linked_list<Type>::ordered_linked_list() {

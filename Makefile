@@ -136,36 +136,6 @@ main/fast:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
 .PHONY : main/fast
 
-binarysearch.o: binarysearch.cpp.o
-
-.PHONY : binarysearch.o
-
-# target to build an object file
-binarysearch.cpp.o:
-	$(MAKE) -f CMakeFiles/A2_CPT112_Lib.dir/build.make CMakeFiles/A2_CPT112_Lib.dir/binarysearch.cpp.o
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/binarysearch.cpp.o
-.PHONY : binarysearch.cpp.o
-
-binarysearch.i: binarysearch.cpp.i
-
-.PHONY : binarysearch.i
-
-# target to preprocess a source file
-binarysearch.cpp.i:
-	$(MAKE) -f CMakeFiles/A2_CPT112_Lib.dir/build.make CMakeFiles/A2_CPT112_Lib.dir/binarysearch.cpp.i
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/binarysearch.cpp.i
-.PHONY : binarysearch.cpp.i
-
-binarysearch.s: binarysearch.cpp.s
-
-.PHONY : binarysearch.s
-
-# target to generate assembly for a file
-binarysearch.cpp.s:
-	$(MAKE) -f CMakeFiles/A2_CPT112_Lib.dir/build.make CMakeFiles/A2_CPT112_Lib.dir/binarysearch.cpp.s
-	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/binarysearch.cpp.s
-.PHONY : binarysearch.cpp.s
-
 book_info.o: book_info.cpp.o
 
 .PHONY : book_info.o
@@ -386,9 +356,6 @@ help:
 	@echo "... A2_CPT112_Lib"
 	@echo "... edit_cache"
 	@echo "... main"
-	@echo "... binarysearch.o"
-	@echo "... binarysearch.i"
-	@echo "... binarysearch.s"
 	@echo "... book_info.o"
 	@echo "... book_info.i"
 	@echo "... book_info.s"
@@ -424,3 +391,5 @@ cmake_check_build_system:
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 
+run:
+	./main
