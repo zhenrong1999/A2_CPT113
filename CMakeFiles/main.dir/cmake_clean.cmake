@@ -6,6 +6,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/main.dir/mystack.cpp.o"
   "CMakeFiles/main.dir/ordered_linked_list.cpp.o"
   "CMakeFiles/main.dir/queue.cpp.o"
+  "CMakeFiles/main.dir/tree_sort_for_linked_list.cpp.o"
   "main.pdb"
   "main"
 )

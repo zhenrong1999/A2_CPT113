@@ -346,6 +346,36 @@ queue.cpp.s:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/queue.cpp.s
 .PHONY : queue.cpp.s
 
+tree_sort_for_linked_list.o: tree_sort_for_linked_list.cpp.o
+
+.PHONY : tree_sort_for_linked_list.o
+
+# target to build an object file
+tree_sort_for_linked_list.cpp.o:
+	$(MAKE) -f CMakeFiles/A2_CPT112_Lib.dir/build.make CMakeFiles/A2_CPT112_Lib.dir/tree_sort_for_linked_list.cpp.o
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/tree_sort_for_linked_list.cpp.o
+.PHONY : tree_sort_for_linked_list.cpp.o
+
+tree_sort_for_linked_list.i: tree_sort_for_linked_list.cpp.i
+
+.PHONY : tree_sort_for_linked_list.i
+
+# target to preprocess a source file
+tree_sort_for_linked_list.cpp.i:
+	$(MAKE) -f CMakeFiles/A2_CPT112_Lib.dir/build.make CMakeFiles/A2_CPT112_Lib.dir/tree_sort_for_linked_list.cpp.i
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/tree_sort_for_linked_list.cpp.i
+.PHONY : tree_sort_for_linked_list.cpp.i
+
+tree_sort_for_linked_list.s: tree_sort_for_linked_list.cpp.s
+
+.PHONY : tree_sort_for_linked_list.s
+
+# target to generate assembly for a file
+tree_sort_for_linked_list.cpp.s:
+	$(MAKE) -f CMakeFiles/A2_CPT112_Lib.dir/build.make CMakeFiles/A2_CPT112_Lib.dir/tree_sort_for_linked_list.cpp.s
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/tree_sort_for_linked_list.cpp.s
+.PHONY : tree_sort_for_linked_list.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -377,6 +407,9 @@ help:
 	@echo "... queue.o"
 	@echo "... queue.i"
 	@echo "... queue.s"
+	@echo "... tree_sort_for_linked_list.o"
+	@echo "... tree_sort_for_linked_list.i"
+	@echo "... tree_sort_for_linked_list.s"
 .PHONY : help
 
 
@@ -391,5 +424,3 @@ cmake_check_build_system:
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 
-run:
-	./main

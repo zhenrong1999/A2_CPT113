@@ -29,6 +29,8 @@ public:
   ~car_info();
   string getplat_no();
   void change(string,string,string,float);
+  bool larger_car_modal(car_info);
+  bool smaller_car_modal(car_info);
   bool operator==(car_info &comparing);
   bool operator!=(car_info &comparing);
   bool operator>=(car_info &comparing);

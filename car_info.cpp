@@ -31,6 +31,17 @@ void car_info::display() {
   return;
 }
 string car_info::getplat_no() { return plat_no; }
+
+bool car_info::larger_car_modal(car_info comparing)
+{
+  return (car_model+plat_no)<(comparing.car_model+comparing.plat_no);
+}
+
+bool car_info::smaller_car_modal(car_info comparing)
+{
+  return (car_model+plat_no)<(comparing.car_model+comparing.plat_no);
+}
+
 bool car_info::operator==(car_info &comparing) {
   return plat_no == comparing.getplat_no();
 }

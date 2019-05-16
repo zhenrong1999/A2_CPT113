@@ -148,6 +148,19 @@ CMakeFiles/A2_CPT112_Lib.dir/queue.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/A2_CPT112_Lib.dir/queue.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zhenrong1999/Projects/A2_CPT113/queue.cpp -o CMakeFiles/A2_CPT112_Lib.dir/queue.cpp.s
 
+CMakeFiles/A2_CPT112_Lib.dir/tree_sort_for_linked_list.cpp.o: CMakeFiles/A2_CPT112_Lib.dir/flags.make
+CMakeFiles/A2_CPT112_Lib.dir/tree_sort_for_linked_list.cpp.o: tree_sort_for_linked_list.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhenrong1999/Projects/A2_CPT113/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/A2_CPT112_Lib.dir/tree_sort_for_linked_list.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/A2_CPT112_Lib.dir/tree_sort_for_linked_list.cpp.o -c /home/zhenrong1999/Projects/A2_CPT113/tree_sort_for_linked_list.cpp
+
+CMakeFiles/A2_CPT112_Lib.dir/tree_sort_for_linked_list.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/A2_CPT112_Lib.dir/tree_sort_for_linked_list.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zhenrong1999/Projects/A2_CPT113/tree_sort_for_linked_list.cpp > CMakeFiles/A2_CPT112_Lib.dir/tree_sort_for_linked_list.cpp.i
+
+CMakeFiles/A2_CPT112_Lib.dir/tree_sort_for_linked_list.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/A2_CPT112_Lib.dir/tree_sort_for_linked_list.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zhenrong1999/Projects/A2_CPT113/tree_sort_for_linked_list.cpp -o CMakeFiles/A2_CPT112_Lib.dir/tree_sort_for_linked_list.cpp.s
+
 # Object files for target A2_CPT112_Lib
 A2_CPT112_Lib_OBJECTS = \
 "CMakeFiles/A2_CPT112_Lib.dir/book_info.cpp.o" \
@@ -156,7 +169,8 @@ A2_CPT112_Lib_OBJECTS = \
 "CMakeFiles/A2_CPT112_Lib.dir/main.cpp.o" \
 "CMakeFiles/A2_CPT112_Lib.dir/mystack.cpp.o" \
 "CMakeFiles/A2_CPT112_Lib.dir/ordered_linked_list.cpp.o" \
-"CMakeFiles/A2_CPT112_Lib.dir/queue.cpp.o"
+"CMakeFiles/A2_CPT112_Lib.dir/queue.cpp.o" \
+"CMakeFiles/A2_CPT112_Lib.dir/tree_sort_for_linked_list.cpp.o"
 
 # External object files for target A2_CPT112_Lib
 A2_CPT112_Lib_EXTERNAL_OBJECTS =
@@ -168,9 +182,10 @@ libA2_CPT112_Lib.a: CMakeFiles/A2_CPT112_Lib.dir/main.cpp.o
 libA2_CPT112_Lib.a: CMakeFiles/A2_CPT112_Lib.dir/mystack.cpp.o
 libA2_CPT112_Lib.a: CMakeFiles/A2_CPT112_Lib.dir/ordered_linked_list.cpp.o
 libA2_CPT112_Lib.a: CMakeFiles/A2_CPT112_Lib.dir/queue.cpp.o
+libA2_CPT112_Lib.a: CMakeFiles/A2_CPT112_Lib.dir/tree_sort_for_linked_list.cpp.o
 libA2_CPT112_Lib.a: CMakeFiles/A2_CPT112_Lib.dir/build.make
 libA2_CPT112_Lib.a: CMakeFiles/A2_CPT112_Lib.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/zhenrong1999/Projects/A2_CPT113/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX static library libA2_CPT112_Lib.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/zhenrong1999/Projects/A2_CPT113/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX static library libA2_CPT112_Lib.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/A2_CPT112_Lib.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/A2_CPT112_Lib.dir/link.txt --verbose=$(VERBOSE)
 

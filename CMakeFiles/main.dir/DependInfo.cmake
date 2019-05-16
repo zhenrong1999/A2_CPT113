@@ -11,6 +11,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/zhenrong1999/Projects/A2_CPT113/mystack.cpp" "/home/zhenrong1999/Projects/A2_CPT113/CMakeFiles/main.dir/mystack.cpp.o"
   "/home/zhenrong1999/Projects/A2_CPT113/ordered_linked_list.cpp" "/home/zhenrong1999/Projects/A2_CPT113/CMakeFiles/main.dir/ordered_linked_list.cpp.o"
   "/home/zhenrong1999/Projects/A2_CPT113/queue.cpp" "/home/zhenrong1999/Projects/A2_CPT113/CMakeFiles/main.dir/queue.cpp.o"
+  "/home/zhenrong1999/Projects/A2_CPT113/tree_sort_for_linked_list.cpp" "/home/zhenrong1999/Projects/A2_CPT113/CMakeFiles/main.dir/tree_sort_for_linked_list.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
