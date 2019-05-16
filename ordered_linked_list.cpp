@@ -199,3 +199,14 @@ int ordered_linked_list<Type>::binary_search(Type to_search) {
 }while(slow_ptr->content != to_search);
   return count;
 }
+template <class Type>
+void ordered_linked_list<Type>::display(){
+  int count=1;
+  nodeType<Type> *current_node=first_node;
+  while(current_node!=NULL)
+  {
+    cout<<count<<current_node->content<<endl;
+    current_node=current_node->next_node;
+    count++;
+  }
+}

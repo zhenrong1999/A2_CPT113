@@ -9,6 +9,7 @@
 #ifndef car_info_hpp
 #define car_info_hpp
 #include <iostream>
+#include <iomanip>
 #include "book_info.hpp"
 #include "mystack.hpp"
 using namespace std;
@@ -34,6 +35,7 @@ public:
   bool operator<=(car_info &comparing);
   bool operator>(car_info &comparing);
   bool operator<(car_info &comparing);
+  friend ostream& operator<< (ostream&, const car_info&);
 };
 
 #endif /* car_info_hpp */

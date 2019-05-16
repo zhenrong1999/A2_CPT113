@@ -15,7 +15,7 @@
  * The linked list that will always in order.
  */
 template <class Type>
-class ordered_linked_list :protected::car_info {
+class ordered_linked_list :protected car_info {
 private:
   nodeType<Type> *first_node;
   nodeType<Type> *last_node;
@@ -31,8 +31,7 @@ public:
     void delete_item(Type);  //Delete the content/item/node in the linked list with given content/item/node
     void copy_from(ordered_linked_list<Type>);  //copy the whole list to another linked list.
     int binary_search(Type);//binary search for the plat number
-protected:
-
+    void display(); //display the car info in table form.
 };
 
 

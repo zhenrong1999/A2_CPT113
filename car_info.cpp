@@ -50,3 +50,8 @@ bool car_info::operator>(car_info &comparing) {
 bool car_info::operator<(car_info &comparing) {
   return plat_no < comparing.getplat_no();
 }
+ostream &operator<<(ostream &out, const car_info &output) {
+  out <<left<< '|' <<setw(20)<< output.car_model << '|' <<setw(10)<< output.plat_no << '|' <<setw(10)<< output.color
+      << '|' <<setw(10)<< output.rental_prize;
+  return out;
+}
