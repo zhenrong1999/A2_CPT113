@@ -7,10 +7,12 @@
 //
 #include "car_info.hpp"
 car_info::car_info() {}
+car_info::car_info(string plat_no_in) {
+  plat_no=plat_no_in;
+}
 car_info::car_info(string plat_no_in, string car_model_in, string color_in,
                    float rental_prize_in) {
   change(plat_no_in, car_model_in, color_in, rental_prize_in);
-  return;
 }
 car_info::~car_info() {}
 
@@ -20,6 +22,10 @@ void car_info::change(string plat_no_in, string car_model_in, string color_in,
   car_model = car_model_in;
   color = color_in;
   rental_prize = rental_prize_in;
+}
+
+void car_info::change_rental_day(int rental_day_added) {
+  rental_day=+rental_day_added;
 }
 
 void car_info::display() {

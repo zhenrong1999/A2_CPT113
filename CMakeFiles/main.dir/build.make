@@ -57,9 +57,22 @@ include CMakeFiles/main.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/main.dir/flags.make
 
+CMakeFiles/main.dir/binary_tree_sorting.cpp.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/binary_tree_sorting.cpp.o: binary_tree_sorting.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhenrong1999/Projects/A2_CPT113/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/main.dir/binary_tree_sorting.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/binary_tree_sorting.cpp.o -c /home/zhenrong1999/Projects/A2_CPT113/binary_tree_sorting.cpp
+
+CMakeFiles/main.dir/binary_tree_sorting.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/binary_tree_sorting.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zhenrong1999/Projects/A2_CPT113/binary_tree_sorting.cpp > CMakeFiles/main.dir/binary_tree_sorting.cpp.i
+
+CMakeFiles/main.dir/binary_tree_sorting.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/binary_tree_sorting.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zhenrong1999/Projects/A2_CPT113/binary_tree_sorting.cpp -o CMakeFiles/main.dir/binary_tree_sorting.cpp.s
+
 CMakeFiles/main.dir/book_info.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/book_info.cpp.o: book_info.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhenrong1999/Projects/A2_CPT113/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/main.dir/book_info.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhenrong1999/Projects/A2_CPT113/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/main.dir/book_info.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/book_info.cpp.o -c /home/zhenrong1999/Projects/A2_CPT113/book_info.cpp
 
 CMakeFiles/main.dir/book_info.cpp.i: cmake_force
@@ -72,7 +85,7 @@ CMakeFiles/main.dir/book_info.cpp.s: cmake_force
 
 CMakeFiles/main.dir/booking_list.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/booking_list.cpp.o: booking_list.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhenrong1999/Projects/A2_CPT113/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/main.dir/booking_list.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhenrong1999/Projects/A2_CPT113/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/main.dir/booking_list.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/booking_list.cpp.o -c /home/zhenrong1999/Projects/A2_CPT113/booking_list.cpp
 
 CMakeFiles/main.dir/booking_list.cpp.i: cmake_force
@@ -85,7 +98,7 @@ CMakeFiles/main.dir/booking_list.cpp.s: cmake_force
 
 CMakeFiles/main.dir/car_info.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/car_info.cpp.o: car_info.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhenrong1999/Projects/A2_CPT113/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/main.dir/car_info.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhenrong1999/Projects/A2_CPT113/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/main.dir/car_info.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/car_info.cpp.o -c /home/zhenrong1999/Projects/A2_CPT113/car_info.cpp
 
 CMakeFiles/main.dir/car_info.cpp.i: cmake_force
@@ -98,7 +111,7 @@ CMakeFiles/main.dir/car_info.cpp.s: cmake_force
 
 CMakeFiles/main.dir/main.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/main.cpp.o: main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhenrong1999/Projects/A2_CPT113/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/main.dir/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhenrong1999/Projects/A2_CPT113/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/main.dir/main.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/main.cpp.o -c /home/zhenrong1999/Projects/A2_CPT113/main.cpp
 
 CMakeFiles/main.dir/main.cpp.i: cmake_force
@@ -111,7 +124,7 @@ CMakeFiles/main.dir/main.cpp.s: cmake_force
 
 CMakeFiles/main.dir/mystack.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/mystack.cpp.o: mystack.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhenrong1999/Projects/A2_CPT113/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/main.dir/mystack.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhenrong1999/Projects/A2_CPT113/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/main.dir/mystack.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/mystack.cpp.o -c /home/zhenrong1999/Projects/A2_CPT113/mystack.cpp
 
 CMakeFiles/main.dir/mystack.cpp.i: cmake_force
@@ -124,7 +137,7 @@ CMakeFiles/main.dir/mystack.cpp.s: cmake_force
 
 CMakeFiles/main.dir/ordered_linked_list.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/ordered_linked_list.cpp.o: ordered_linked_list.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhenrong1999/Projects/A2_CPT113/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/main.dir/ordered_linked_list.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhenrong1999/Projects/A2_CPT113/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/main.dir/ordered_linked_list.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/ordered_linked_list.cpp.o -c /home/zhenrong1999/Projects/A2_CPT113/ordered_linked_list.cpp
 
 CMakeFiles/main.dir/ordered_linked_list.cpp.i: cmake_force
@@ -137,7 +150,7 @@ CMakeFiles/main.dir/ordered_linked_list.cpp.s: cmake_force
 
 CMakeFiles/main.dir/queue.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/queue.cpp.o: queue.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhenrong1999/Projects/A2_CPT113/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/main.dir/queue.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhenrong1999/Projects/A2_CPT113/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/main.dir/queue.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/queue.cpp.o -c /home/zhenrong1999/Projects/A2_CPT113/queue.cpp
 
 CMakeFiles/main.dir/queue.cpp.i: cmake_force
@@ -148,33 +161,21 @@ CMakeFiles/main.dir/queue.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/queue.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zhenrong1999/Projects/A2_CPT113/queue.cpp -o CMakeFiles/main.dir/queue.cpp.s
 
-CMakeFiles/main.dir/tree_sort_for_linked_list.cpp.o: CMakeFiles/main.dir/flags.make
-CMakeFiles/main.dir/tree_sort_for_linked_list.cpp.o: tree_sort_for_linked_list.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/zhenrong1999/Projects/A2_CPT113/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/main.dir/tree_sort_for_linked_list.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/main.dir/tree_sort_for_linked_list.cpp.o -c /home/zhenrong1999/Projects/A2_CPT113/tree_sort_for_linked_list.cpp
-
-CMakeFiles/main.dir/tree_sort_for_linked_list.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/main.dir/tree_sort_for_linked_list.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/zhenrong1999/Projects/A2_CPT113/tree_sort_for_linked_list.cpp > CMakeFiles/main.dir/tree_sort_for_linked_list.cpp.i
-
-CMakeFiles/main.dir/tree_sort_for_linked_list.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/main.dir/tree_sort_for_linked_list.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/zhenrong1999/Projects/A2_CPT113/tree_sort_for_linked_list.cpp -o CMakeFiles/main.dir/tree_sort_for_linked_list.cpp.s
-
 # Object files for target main
 main_OBJECTS = \
+"CMakeFiles/main.dir/binary_tree_sorting.cpp.o" \
 "CMakeFiles/main.dir/book_info.cpp.o" \
 "CMakeFiles/main.dir/booking_list.cpp.o" \
 "CMakeFiles/main.dir/car_info.cpp.o" \
 "CMakeFiles/main.dir/main.cpp.o" \
 "CMakeFiles/main.dir/mystack.cpp.o" \
 "CMakeFiles/main.dir/ordered_linked_list.cpp.o" \
-"CMakeFiles/main.dir/queue.cpp.o" \
-"CMakeFiles/main.dir/tree_sort_for_linked_list.cpp.o"
+"CMakeFiles/main.dir/queue.cpp.o"
 
 # External object files for target main
 main_EXTERNAL_OBJECTS =
 
+main: CMakeFiles/main.dir/binary_tree_sorting.cpp.o
 main: CMakeFiles/main.dir/book_info.cpp.o
 main: CMakeFiles/main.dir/booking_list.cpp.o
 main: CMakeFiles/main.dir/car_info.cpp.o
@@ -182,7 +183,6 @@ main: CMakeFiles/main.dir/main.cpp.o
 main: CMakeFiles/main.dir/mystack.cpp.o
 main: CMakeFiles/main.dir/ordered_linked_list.cpp.o
 main: CMakeFiles/main.dir/queue.cpp.o
-main: CMakeFiles/main.dir/tree_sort_for_linked_list.cpp.o
 main: CMakeFiles/main.dir/build.make
 main: CMakeFiles/main.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/zhenrong1999/Projects/A2_CPT113/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX executable main"

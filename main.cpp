@@ -1,6 +1,5 @@
 #include "main.hpp"
 
-tree_sort_for_linked_list<car_info> treesorting;
 void read_raw_info(queue<std::string> &to_stored, std::string file_to_open) {
   std::ifstream openfile;
   openfile.open(file_to_open, std::ios::in);
@@ -66,8 +65,11 @@ bool validation_for_plate_number(const std::string input) {
   return false;
 }
 
+
+
 void extract_car_info_from_raw(ordered_linked_list<car_info> &car_database,
                                queue<string> raw_info) {
+   binary_tree_sorting<string,car_info> testing;
   while (!raw_info.is_empty()) {
     string line = raw_info.front();
     stringstream ss;
@@ -112,12 +114,12 @@ void extract_car_info_from_raw(ordered_linked_list<car_info> &car_database,
     }
     car_database.insert_item(
         car_info(plate_no, car_model, color, rental_prize_float));
-    treesorting.car_info_sort_tree_insert(treesorting,
-                     car_info(plate_no, car_model, color, rental_prize_float),
-                     "car_model");
+      testing.insert(plate_no,car_info(plate_no, car_model, color, rental_prize_float));
     raw_info.delQueue();
   }
+  testing.display_inorder();
 }
+
 
 
 int main() {
@@ -130,5 +132,4 @@ int main() {
   read_raw_info(car_info_raw, "car info.txt");
   extract_car_info_from_raw(car_database, car_info_raw);
   // car_database.display();
-  treesorting.inorder();
 }

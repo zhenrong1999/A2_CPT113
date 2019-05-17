@@ -36,16 +36,47 @@ template <class Type> int ordered_linked_list<Type>::length_of_list() {
   return total_number_of_node;
 }
 
-template <class Type> Type ordered_linked_list<Type>::get_item(int index) {
+template <class Type> Type ordered_linked_list<Type>::get_item_by_index(int index) {
+  nodeType<Type> *current;
   if (index > total_number_of_node && index < -1) {
     std::cout << "The index is not in the list which may cause " << '\n';
   } else {
-    nodeType<Type> *current;
-    current = first_node;
-    for (int i = 0; i < index; i++)
-      current = current->next_node;
-    return current->content;
+    int i=index%2;
+    switch (i) {
+      case 0:
+        current = first_node;
+        break;
+      case 1:
+        current=first_node->next_node;
+        break;
+    }
+    for (i=i;i < index; i=i+2)
+      current = current->next_node->next_node;
   }
+  return current->content;
+}
+
+template <class Type> Type ordered_linked_list<Type>::get_item(Type to_search) {
+  nodeType<Type> *start_node = first_node;
+  nodeType<Type> *slow_ptr = first_node;
+  nodeType<Type> *fast_ptr = first_node;
+  nodeType<Type> *end_node = NULL;
+  do {
+    while (fast_ptr != end_node && fast_ptr->next_node != end_node) {
+      fast_ptr = fast_ptr->next_node->next_node;
+      slow_ptr = slow_ptr->next_node;
+    }
+    if (slow_ptr == fast_ptr && slow_ptr->content != to_search)
+      break;
+    else if (slow_ptr->content < to_search) {
+      end_node = fast_ptr->next_node;
+      slow_ptr = start_node = fast_ptr = (slow_ptr->next_node);
+    } else if (slow_ptr->content > to_search) {
+      end_node = slow_ptr;
+      fast_ptr = slow_ptr = start_node;
+    }
+  } while (slow_ptr->content != to_search);
+  return slow_ptr->content;
 }
 
 template <class Type>
@@ -153,11 +184,11 @@ void ordered_linked_list<Type>::copy_from(ordered_linked_list<Type> original) {
   }
   nodeType<Type> *current, *previous_of_current;
   first_node = current = new nodeType<Type>;
-  current->content = original.get_item(0);
+  current->content = original.get_item_by_index(0);
   previous_of_current = current;
   current = new nodeType<Type>;
   for (int i = 1; i < original.length_of_list(); i++) {
-    current->content = original.get_item(i);
+    current->content = original.get_item_by_index(i);
     previous_of_current->next_node = current;
     previous_of_current = current;
     current = new nodeType<Type>;
@@ -170,43 +201,38 @@ void ordered_linked_list<Type>::copy_from(ordered_linked_list<Type> original) {
 
 template <class Type>
 int ordered_linked_list<Type>::binary_search(Type to_search) {
-  nodeType<Type> *start_node=first_node;
+  nodeType<Type> *start_node = first_node;
   nodeType<Type> *slow_ptr = first_node;
   nodeType<Type> *fast_ptr = first_node;
-  nodeType<Type> *end_node=NULL;
-  int count=0;
-  int count_previous=0;
-  do{
-  while (fast_ptr != end_node && fast_ptr->next_node != end_node) {
-    fast_ptr = fast_ptr->next_node->next_node;
-    slow_ptr = slow_ptr->next_node;
-    count++;
-  }
-  if(slow_ptr==fast_ptr && slow_ptr->content != to_search)
-    return -1;
-  else if(slow_ptr->content < to_search)
-    {
-      end_node=fast_ptr->next_node;
-      slow_ptr=start_node=fast_ptr=(slow_ptr->next_node);
-      count_previous=++count;
+  nodeType<Type> *end_node = NULL;
+  int count = 0;
+  int count_previous = 0;
+  do {
+    while (fast_ptr != end_node && fast_ptr->next_node != end_node) {
+      fast_ptr = fast_ptr->next_node->next_node;
+      slow_ptr = slow_ptr->next_node;
+      count++;
     }
-    else if(slow_ptr->content > to_search)
-    {
-      end_node=slow_ptr ;
-      fast_ptr=slow_ptr=start_node;
-      count=count_previous;
+    if (slow_ptr == fast_ptr && slow_ptr->content != to_search)
+      return -1;
+    else if (slow_ptr->content < to_search) {
+      end_node = fast_ptr->next_node;
+      slow_ptr = start_node = fast_ptr = (slow_ptr->next_node);
+      count_previous = ++count;
+    } else if (slow_ptr->content > to_search) {
+      end_node = slow_ptr;
+      fast_ptr = slow_ptr = start_node;
+      count = count_previous;
     }
-}while(slow_ptr->content != to_search);
+  } while (slow_ptr->content != to_search);
   return count;
 }
-template <class Type>
-void ordered_linked_list<Type>::display(){
-  int count=1;
-  nodeType<Type> *current_node=first_node;
-  while(current_node!=NULL)
-  {
-    cout<<count<<current_node->content<<endl;
-    current_node=current_node->next_node;
+template <class Type> void ordered_linked_list<Type>::display() {
+  int count = 1;
+  nodeType<Type> *current_node = first_node;
+  while (current_node != NULL) {
+    cout << count << current_node->content << endl;
+    current_node = current_node->next_node;
     count++;
   }
 }
