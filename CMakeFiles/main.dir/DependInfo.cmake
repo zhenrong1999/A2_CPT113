@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "/home/zhenrong1999/Projects/A2_CPT113/book_info.cpp" "/home/zhenrong1999/Projects/A2_CPT113/CMakeFiles/main.dir/book_info.cpp.o"
   "/home/zhenrong1999/Projects/A2_CPT113/booking_list.cpp" "/home/zhenrong1999/Projects/A2_CPT113/CMakeFiles/main.dir/booking_list.cpp.o"
   "/home/zhenrong1999/Projects/A2_CPT113/car_info.cpp" "/home/zhenrong1999/Projects/A2_CPT113/CMakeFiles/main.dir/car_info.cpp.o"
+  "/home/zhenrong1999/Projects/A2_CPT113/car_info_list.cpp" "/home/zhenrong1999/Projects/A2_CPT113/CMakeFiles/main.dir/car_info_list.cpp.o"
   "/home/zhenrong1999/Projects/A2_CPT113/main.cpp" "/home/zhenrong1999/Projects/A2_CPT113/CMakeFiles/main.dir/main.cpp.o"
   "/home/zhenrong1999/Projects/A2_CPT113/mystack.cpp" "/home/zhenrong1999/Projects/A2_CPT113/CMakeFiles/main.dir/mystack.cpp.o"
   "/home/zhenrong1999/Projects/A2_CPT113/ordered_linked_list.cpp" "/home/zhenrong1999/Projects/A2_CPT113/CMakeFiles/main.dir/ordered_linked_list.cpp.o"

@@ -27,7 +27,7 @@ public:
     void delQueue();
     bool is_empty();
     Type front();
-    int queue_lenght();
+    int length();
 protected:
 
 };

@@ -21,7 +21,6 @@ protected:
   nodeType<Type> *first_node;
   nodeType<Type> *last_node;
   int total_number_of_node=0;
-  string sorted_mode="default";
 public:
     ordered_linked_list();  //Initialize the ordered_linked_list
     ~ordered_linked_list(); //Destroy the ordered_linked_list

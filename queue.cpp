@@ -30,7 +30,8 @@ template <class Type> void queue<Type>::addQueue(Type input_content) {
 
 template <class Type> void queue<Type>::delQueue() {
   if (is_empty()) {
-    std::cerr << "The stack is empty. Nothing to be deleted." << '\n';
+    std::cerr << "The queue is empty. Nothing to be deleted." << '\n';
+    return;
   } else {
     nodeType<Type> *to_be_deleted = new nodeType<Type>;
     to_be_deleted = front_node;
@@ -40,6 +41,7 @@ template <class Type> void queue<Type>::delQueue() {
     if (front_node == NULL) {
       back_node = front_node;
     }
+    return;
   }
 }
 template <class Type> bool queue<Type>::is_empty() {
@@ -50,6 +52,6 @@ template <class Type> bool queue<Type>::is_empty() {
 }
 template <class Type> Type queue<Type>::front() { return front_node->content; }
 
-template <class Type> int queue<Type>::queue_lenght() {
+template <class Type> int queue<Type>::length() {
   return total_number_of_queue;
 }

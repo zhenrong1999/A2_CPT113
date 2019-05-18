@@ -12,6 +12,7 @@
 #include <iostream>
 #include "car_info.hpp"
 #include "ordered_linked_list.hpp"
+#include "binary_tree_sorting.hpp"
 
 class car_info_list : protected ordered_linked_list<car_info> {
 private:
@@ -19,6 +20,7 @@ private:
   int max_length_of_string_car_model=0;
   int max_length_of_string_colour=0;
   int max_length_of_prize=0;
+  string sorted_mode= "default";  //the default is sorted by plate no. Other option is sort by car model
 public:
     car_info_list();
     ~car_info_list();
@@ -28,7 +30,11 @@ public:
     void edit_car(string,string,string,float);
     void delete_car(string plate_no);
     void delete_car(int);
-    void display();
+    comparingNodeType<string, nodeType<car_info> *> *
+    sort_inoder(comparingNodeType<string, nodeType<car_info> *> *current);
+    void sort_car_info_list(string);
+    int length_of_list();
+    void display(); //display all the car info in a table.
 protected:
 
 };

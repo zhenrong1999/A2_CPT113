@@ -21,7 +21,7 @@ protected:
   string color;
   float rental_prize;
   int rental_day;
-  float rental_sale = 0;
+  float rental_sales = 0;
   mystack<book_info> booking_list;
 public:
   void display();
@@ -30,6 +30,11 @@ public:
   car_info(string,string,string,float);
   ~car_info();
   string getplat_no();
+  string getcar_model();
+  string getcar_color();
+  float getrental_prize();
+  int getrental_day();
+  float getrental_sales();
   void change(string,string,string,float);
   void change_rental_day(int);
   bool larger_car_modal(car_info);

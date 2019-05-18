@@ -7,8 +7,9 @@
 //
 
 #include "binary_tree_sorting.hpp"
-
-template class binary_tree_sorting<std::string,car_info>;
+template class binary_tree_sorting<std::string,nodeType<car_info>*>;
+//template class binary_tree_sorting<std::string,car_info>;
+//template class binary_tree_sorting<std::string,car_info*>;
 
 template <class Type,class Type2>
 binary_tree_sorting<Type,Type2>::binary_tree_sorting()  {
@@ -60,7 +61,13 @@ template <class Type,class Type2>
 void binary_tree_sorting<Type,Type2>::display_inorder(comparingNodeType<Type,Type2>* current)  {
   if (current != NULL) {
     display_inorder(current->left);
-    std::cout << current->content << '\n';
+    std::cout << current->content<< '\n';
     display_inorder(current->right);
   }
+}
+
+template <class Type,class Type2>
+comparingNodeType<Type,Type2> *binary_tree_sorting<Type,Type2>::get_root()
+{
+  return root;
 }

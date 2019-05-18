@@ -11,7 +11,7 @@
 
 #include <iostream>
 #include "car_info.hpp"
-
+#include "nodeType.hpp"
 template <class Type,class Type2>
 struct comparingNodeType{
   Type to_be_compare;
@@ -32,6 +32,8 @@ public:
     comparingNodeType<Type,Type2> * insert_into_tree(comparingNodeType<Type,Type2>*,Type,Type2);
     void display_inorder(); // A utility function to do inorder traversal of BST
     void display_inorder(comparingNodeType<Type,Type2>*);
+    void inorder(comparingNodeType<Type,Type2>*);
+    comparingNodeType<Type,Type2>* get_root();
     ~binary_tree_sorting();
 protected:
 
