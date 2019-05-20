@@ -21,28 +21,18 @@ string.h
 -
 
 /home/zhenrong1999/Projects/A2_CPT113/car_info.hpp
-iostream
--
-iomanip
--
-book_info.hpp
-/home/zhenrong1999/Projects/A2_CPT113/book_info.hpp
 mystack.hpp
 /home/zhenrong1999/Projects/A2_CPT113/mystack.hpp
-
-/home/zhenrong1999/Projects/A2_CPT113/car_info_list.cpp
-car_info_list.hpp
-/home/zhenrong1999/Projects/A2_CPT113/car_info_list.hpp
-
-/home/zhenrong1999/Projects/A2_CPT113/car_info_list.hpp
+iomanip
+-
 iostream
 -
-car_info.hpp
-/home/zhenrong1999/Projects/A2_CPT113/car_info.hpp
-ordered_linked_list.hpp
-/home/zhenrong1999/Projects/A2_CPT113/ordered_linked_list.hpp
-binary_tree_sorting.hpp
-/home/zhenrong1999/Projects/A2_CPT113/binary_tree_sorting.hpp
+
+/home/zhenrong1999/Projects/A2_CPT113/car_model_type.hpp
+iomanip
+-
+iostream
+-
 
 /home/zhenrong1999/Projects/A2_CPT113/mystack.hpp
 iostream
@@ -56,11 +46,17 @@ book_info.hpp
 iostream
 -
 
+/home/zhenrong1999/Projects/A2_CPT113/ordered_linked_list.cpp
+ordered_linked_list.hpp
+/home/zhenrong1999/Projects/A2_CPT113/ordered_linked_list.hpp
+
 /home/zhenrong1999/Projects/A2_CPT113/ordered_linked_list.hpp
 nodeType.hpp
 /home/zhenrong1999/Projects/A2_CPT113/nodeType.hpp
 car_info.hpp
 /home/zhenrong1999/Projects/A2_CPT113/car_info.hpp
+car_model_type.hpp
+/home/zhenrong1999/Projects/A2_CPT113/car_model_type.hpp
 binary_tree_sorting.hpp
 /home/zhenrong1999/Projects/A2_CPT113/binary_tree_sorting.hpp
 

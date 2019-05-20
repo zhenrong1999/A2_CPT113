@@ -286,6 +286,36 @@ car_info_list.cpp.s:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/car_info_list.cpp.s
 .PHONY : car_info_list.cpp.s
 
+car_model_type.o: car_model_type.cpp.o
+
+.PHONY : car_model_type.o
+
+# target to build an object file
+car_model_type.cpp.o:
+	$(MAKE) -f CMakeFiles/A2_CPT112_Lib.dir/build.make CMakeFiles/A2_CPT112_Lib.dir/car_model_type.cpp.o
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/car_model_type.cpp.o
+.PHONY : car_model_type.cpp.o
+
+car_model_type.i: car_model_type.cpp.i
+
+.PHONY : car_model_type.i
+
+# target to preprocess a source file
+car_model_type.cpp.i:
+	$(MAKE) -f CMakeFiles/A2_CPT112_Lib.dir/build.make CMakeFiles/A2_CPT112_Lib.dir/car_model_type.cpp.i
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/car_model_type.cpp.i
+.PHONY : car_model_type.cpp.i
+
+car_model_type.s: car_model_type.cpp.s
+
+.PHONY : car_model_type.s
+
+# target to generate assembly for a file
+car_model_type.cpp.s:
+	$(MAKE) -f CMakeFiles/A2_CPT112_Lib.dir/build.make CMakeFiles/A2_CPT112_Lib.dir/car_model_type.cpp.s
+	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/car_model_type.cpp.s
+.PHONY : car_model_type.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -431,6 +461,9 @@ help:
 	@echo "... car_info_list.o"
 	@echo "... car_info_list.i"
 	@echo "... car_info_list.s"
+	@echo "... car_model_type.o"
+	@echo "... car_model_type.i"
+	@echo "... car_model_type.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

@@ -4,6 +4,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/main.dir/booking_list.cpp.o"
   "CMakeFiles/main.dir/car_info.cpp.o"
   "CMakeFiles/main.dir/car_info_list.cpp.o"
+  "CMakeFiles/main.dir/car_model_type.cpp.o"
   "CMakeFiles/main.dir/main.cpp.o"
   "CMakeFiles/main.dir/mystack.cpp.o"
   "CMakeFiles/main.dir/ordered_linked_list.cpp.o"

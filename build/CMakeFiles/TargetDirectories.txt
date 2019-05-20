@@ -1,4 +1,0 @@
-/home/zhenrong1999/Projects/A2_CPT113/build/CMakeFiles/rebuild_cache.dir
-/home/zhenrong1999/Projects/A2_CPT113/build/CMakeFiles/A2_CPT112_Lib.dir
-/home/zhenrong1999/Projects/A2_CPT113/build/CMakeFiles/edit_cache.dir
-/home/zhenrong1999/Projects/A2_CPT113/build/CMakeFiles/main.dir

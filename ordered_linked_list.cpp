@@ -9,6 +9,7 @@
 #include "ordered_linked_list.hpp"
 template class ordered_linked_list<int>;
 template class ordered_linked_list<car_info>;
+template class ordered_linked_list<car_model_type>;
 template class ordered_linked_list<string>;
 
 template <class Type> ordered_linked_list<Type>::ordered_linked_list() {
@@ -36,27 +37,29 @@ template <class Type> int ordered_linked_list<Type>::length_of_list() {
   return total_number_of_node;
 }
 
-template <class Type> Type ordered_linked_list<Type>::get_item_by_index(int index) {
+template <class Type>
+nodeType<Type> *ordered_linked_list<Type>::get_item_by_index(int index) {
   nodeType<Type> *current;
   if (index > total_number_of_node && index < -1) {
     std::cout << "The index is not in the list which may cause " << '\n';
   } else {
-    int i=index%2;
+    int i = index % 2;
     switch (i) {
-      case 0:
-        current = first_node;
-        break;
-      case 1:
-        current=first_node->next_node;
-        break;
+    case 0:
+      current = first_node;
+      break;
+    case 1:
+      current = first_node->next_node;
+      break;
     }
-    for (i=i;i < index; i=i+2)
+    for (i = i; i < index; i = i + 2)
       current = current->next_node->next_node;
   }
-  return current->content;
+  return current;
 }
 
-template <class Type> Type ordered_linked_list<Type>::get_item(Type to_search) {
+template <class Type>
+nodeType<Type> *ordered_linked_list<Type>::get_item(Type to_search) {
   nodeType<Type> *start_node = first_node;
   nodeType<Type> *slow_ptr = first_node;
   nodeType<Type> *fast_ptr = first_node;
@@ -66,9 +69,10 @@ template <class Type> Type ordered_linked_list<Type>::get_item(Type to_search) {
       fast_ptr = fast_ptr->next_node->next_node;
       slow_ptr = slow_ptr->next_node;
     }
-    if (slow_ptr == fast_ptr && slow_ptr->content != to_search)
+    if (slow_ptr == fast_ptr && slow_ptr->content != to_search) {
+      return NULL;
       break;
-    else if (slow_ptr->content < to_search) {
+    } else if (slow_ptr->content < to_search) {
       end_node = fast_ptr->next_node;
       slow_ptr = start_node = fast_ptr = (slow_ptr->next_node);
     } else if (slow_ptr->content > to_search) {
@@ -76,7 +80,7 @@ template <class Type> Type ordered_linked_list<Type>::get_item(Type to_search) {
       fast_ptr = slow_ptr = start_node;
     }
   } while (slow_ptr->content != to_search);
-  return slow_ptr->content;
+  return slow_ptr;
 }
 
 template <class Type>
@@ -90,31 +94,31 @@ void ordered_linked_list<Type>::insert_item(Type input_content) {
     temp->content = input_content;
     temp->next_node = first_node;
     first_node = temp;
+    std::cout << "Change in first node." << '\n';
   } else if (input_content > last_node->content) {
     nodeType<Type> *temp = new nodeType<Type>;
     temp->content = input_content;
     temp->next_node = NULL;
     last_node->next_node = temp;
     last_node = temp;
+    std::cout << "Change in last node." << '\n';
   } else {
-    nodeType<Type> *previous_of_current = first_node;
-    nodeType<Type> *current = first_node->next_node;
-    do {
+    nodeType<Type> *current = first_node;
+    while (current->next_node->content < input_content) {
       if (current->content == input_content) {
         std::cerr << "The same input content has been found!" << '\n';
         return;
-      } else if (previous_of_current->content < input_content &&
-                 input_content < current->content) {
-        nodeType<Type> *temp = new nodeType<Type>;
-        temp->content = input_content;
-        temp->next_node = current;
-        previous_of_current->next_node = temp;
-        break;
       } else {
-        previous_of_current = current;
         current = current->next_node;
+        if(current->next_node==NULL||current==last_node)
+        {break;}
       }
-    } while (current->next_node != NULL);
+    }
+    nodeType<Type> *temp = new nodeType<Type>;
+    temp->content = input_content;
+    temp->next_node = current->next_node;
+    current->next_node = temp;
+    std::cout << "Change in between nodes." << '\n';
   }
   total_number_of_node++;
 }
@@ -184,23 +188,31 @@ void ordered_linked_list<Type>::copy_from(ordered_linked_list<Type> original) {
   }
   nodeType<Type> *current, *previous_of_current;
   first_node = current = new nodeType<Type>;
-  current->content = original.get_item_by_index(0);
+  current->content = original.get_item_by_index(0)->content;
   previous_of_current = current;
   current = new nodeType<Type>;
   for (int i = 1; i < original.length_of_list(); i++) {
-    current->content = original.get_item_by_index(i);
+    current->content = original.get_item_by_index(i)->content;
     previous_of_current->next_node = current;
     previous_of_current = current;
     current = new nodeType<Type>;
   }
   last_node = previous_of_current;
   previous_of_current->next_node = NULL;
+
   delete current;
   total_number_of_node = original.length_of_list();
 }
 
 template <class Type>
 int ordered_linked_list<Type>::binary_search(Type to_search) {
+  std::cout << "Seacrhing for "<< to_search << "......" << '\n';
+  if(is_empty()||to_search<first_node->content||to_search>last_node->content)
+    return -1;
+  if(to_search==first_node->content)
+    return 0;
+  if(to_search==last_node->content)
+    return total_number_of_node-1;
   nodeType<Type> *start_node = first_node;
   nodeType<Type> *slow_ptr = first_node;
   nodeType<Type> *fast_ptr = first_node;
@@ -225,13 +237,16 @@ int ordered_linked_list<Type>::binary_search(Type to_search) {
       count = count_previous;
     }
   } while (slow_ptr->content != to_search);
+if (slow_ptr->content == to_search)
   return count;
+else
+  return -1;
 }
 template <class Type> void ordered_linked_list<Type>::display() {
   int count = 1;
   nodeType<Type> *current_node = first_node;
   while (current_node != NULL) {
-    cout <<setw(3)<<left<< count << current_node->content << endl;
+    cout << setw(3) << left << count << current_node->content << endl;
     current_node = current_node->next_node;
     count++;
   }
