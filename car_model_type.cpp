@@ -40,6 +40,11 @@ car_model_type::car_model_type(std::string car_model_in, float rental_prize_in,
 
 car_model_type::~car_model_type() {}
 
+void car_model_type::set_display_item(display_item* display_item_in){
+  display_measurement=display_item_in;
+}
+
+
 void car_model_type::change_rental_prize(float rental_prize_in) {
   rental_prize = rental_prize_in;
   rental_sales = rental_prize * rental_day;

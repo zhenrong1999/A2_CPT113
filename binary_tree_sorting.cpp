@@ -8,6 +8,7 @@
 
 #include "binary_tree_sorting.hpp"
 template class binary_tree_sorting<std::string,nodeType<car_info>*>;
+template class binary_tree_sorting<std::string,nodeType<car_model_type>*>;
 //template class binary_tree_sorting<std::string,car_info>;
 //template class binary_tree_sorting<std::string,car_info*>;
 

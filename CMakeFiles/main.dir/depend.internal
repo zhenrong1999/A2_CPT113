@@ -6,6 +6,7 @@ CMakeFiles/main.dir/binary_tree_sorting.cpp.o
  /home/zhenrong1999/Projects/A2_CPT113/binary_tree_sorting.hpp
  /home/zhenrong1999/Projects/A2_CPT113/book_info.hpp
  /home/zhenrong1999/Projects/A2_CPT113/car_info.hpp
+ /home/zhenrong1999/Projects/A2_CPT113/car_model_type.hpp
  /home/zhenrong1999/Projects/A2_CPT113/mystack.hpp
  /home/zhenrong1999/Projects/A2_CPT113/nodeType.hpp
 CMakeFiles/main.dir/book_info.cpp.o
@@ -36,6 +37,7 @@ CMakeFiles/main.dir/car_info_list.cpp.o
 CMakeFiles/main.dir/car_model_type.cpp.o
  /home/zhenrong1999/Projects/A2_CPT113/car_model_type.cpp
  /home/zhenrong1999/Projects/A2_CPT113/car_model_type.hpp
+ /home/zhenrong1999/Projects/A2_CPT113/nodeType.hpp
 CMakeFiles/main.dir/main.cpp.o
  /home/zhenrong1999/Projects/A2_CPT113/binary_tree_sorting.hpp
  /home/zhenrong1999/Projects/A2_CPT113/book_info.hpp

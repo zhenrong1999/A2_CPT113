@@ -11,6 +11,7 @@
 
 #include <iostream>
 #include "car_info.hpp"
+#include "car_model_type.hpp"
 #include "nodeType.hpp"
 template <class Type,class Type2>
 struct comparingNodeType{

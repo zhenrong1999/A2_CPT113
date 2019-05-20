@@ -14,6 +14,15 @@ car_info::car_info(string plat_no_in, string car_model_in, string color_in,
                    float rental_prize_in) {
   change(plat_no_in, car_model_in, color_in, rental_prize_in, 0);
 }
+car_info::car_info(string plat_no_in, string car_model_in, string color_in,
+                   float rental_prize_in,int rental_day_in, float rental_sales_in) {
+  plat_no=plat_no_in;
+  car_model=car_model_in;
+  color=color_in;
+  rental_prize=rental_prize_in;
+  rental_day=rental_day_in;
+  rental_sales=rental_sales_in;
+}
 car_info::~car_info() {}
 
 void car_info::change(string plat_no_in, string car_model_in, string color_in,
@@ -34,6 +43,10 @@ void car_info::change_rental_prize(float rental_prize_in) {
 void car_info::change_rental_day(int rental_day_added) {
   rental_day += rental_day_added;
   rental_sales += rental_day_added * rental_prize;
+}
+
+void car_info::set_display_item(display_item* display_item_in){
+  display_measurement=display_item_in;
 }
 
 void car_info::display() {
@@ -97,10 +110,18 @@ bool car_info::operator<(car_info &comparing) {
     return true;
   return false;
 }
+
+car_info car_info::operator+(car_info &comparing) {
+  car_info total("Total","Total","no info", rental_prize + comparing.rental_prize,
+                       rental_day + comparing.rental_day,
+                       rental_sales + comparing.rental_sales);
+  return total;
+}
+
 ostream &operator<<(ostream &out, const car_info &output) {
-  out << left << '|' << setw(20) << output.car_model << '|' << setw(10)
-      << output.plat_no << '|' << setw(10) << output.color << '|' << setw(12)
-      << output.rental_prize << '|' << setw(12) << output.rental_day << '|'
-      << setw(12) << output.rental_sales << '|';
+  out << left << '|' << setw(output.display_measurement->max_length_of_car_model) << output.car_model << '|' << setw(output.display_measurement->max_length_of_plate_no)
+      << output.plat_no << '|' << setw(output.display_measurement->max_length_of_colour) << output.color << '|' << setw(output.display_measurement->max_length_of_rental_prize)
+      << output.rental_prize << '|' << setw(output.display_measurement->max_length_of_rental_day) << output.rental_day << '|'
+      << setw(output.display_measurement->max_length_of_rental_sales) << output.rental_sales << '|';
   return out;
 }

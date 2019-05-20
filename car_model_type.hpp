@@ -11,6 +11,7 @@
 
 #include <iomanip>
 #include <iostream>
+#include "nodeType.hpp"
 
 class car_model_type {
 private:
@@ -19,13 +20,14 @@ private:
   int count = 0;
   int rental_day = 0;
   float rental_sales = 0;
-
+  display_item* display_measurement;
 public:
   car_model_type();
   car_model_type(std::string);
   car_model_type(std::string, float);
   car_model_type(std::string, float, int);
   car_model_type(std::string, float, int, float);
+  void set_display_item(display_item*);
   ~car_model_type();
   std::string getcar_model();
   float getrental_prize();

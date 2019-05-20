@@ -14,16 +14,16 @@
 #include "car_model_type.hpp"
 #include "ordered_linked_list.hpp"
 #include <iostream>
+#include <cmath>
 
 class car_info_list : protected ordered_linked_list<car_info> {
 private:
-  int max_length_of_string_plate_no = 0;
-  int max_length_of_string_car_model = 0;
-  int max_length_of_string_colour = 0;
-  int max_length_of_prize = 0;
+  
   ordered_linked_list<car_model_type> car_model_list;
   string sorted_mode = "default"; // the default is sorted by plate no. Other
                                   // option is sort by car model
+  string car_model_list_sorted_mode = "default";
+
 public:
   car_info_list();
   ~car_info_list();
@@ -39,7 +39,10 @@ public:
   void delete_car(int);
   comparingNodeType<string, nodeType<car_info> *> *
   sort_inoder(comparingNodeType<string, nodeType<car_info> *> *current);
+  comparingNodeType<string, nodeType<car_model_type> *> *
+  sort_inoder(comparingNodeType<string, nodeType<car_model_type> *> *current);
   void sort_car_info_list(string);
+  void sort_car_model_list(string);
   int length_of_list();
   int search(string);
   int search_car_model_list(string);
@@ -49,6 +52,7 @@ public:
   void display_selected(string mode, string, string);
   void display_car_model();
   car_model_type sum_of_all();
+  car_info sum_of_selection();
 };
 
 #endif /* car_info_list_hpp */

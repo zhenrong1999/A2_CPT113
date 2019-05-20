@@ -1,7 +1,7 @@
 CDP2344, Proton Exora, no info, 150
 CDP2345, Proton Exora, no info, 150
-PBU6629, Tesla Model S, no info, 200
 PBU6627, Tesla Model Y, no info, 160
+PBU6629, Tesla Model S, no info, 200
 PMV4139, Toyota Vios, no info, 120
 PNC9892, Toyota Vios, no info, 120
 VBU330, Perodua Myvi, no info, 110

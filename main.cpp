@@ -21,28 +21,28 @@ string car_edit(int i, car_info_list &car_database);
 void read_raw_info(queue<std::string> &to_stored, std::string file_to_open);
 void erase_space_comer(string &input);
 bool consist_alphabet_or_number(const std::string input);
+bool consist_alphabet_or_number_only(const std::string input);
 bool validation_for_deciaml_number(const std::string input);
 bool validation_for_alphabet(const std::string input);
 bool validation_for_plate_number(const std::string input);
+string text_file_format(std::string input);
 void extract_car_info_from_raw(car_info_list &car_database,
                                queue<string> &raw_info);
-void write_2_file(car_info_list &car_database,string filename);
-
+void write_2_file(car_info_list &car_database, string filename);
 
 void generate_report(car_info_list &car_database) {
-    string to_search;
-  do
-  {
+  string to_search;
+  do {
     clear_screen();
     car_database.display_car_model();
     std::cout << "Search Car Model " << '\n';
-    to_search=get_string_from_user_input();
-    cout<< car_database.search_car_model_list(to_search)<<endl;
+    to_search = get_string_from_user_input();
+    //scout << car_database.search_car_model_list(to_search) << endl;
     pause();
-  }while(to_search!="exit");
+  } while (to_search != "exit");
 }
 
-void menu2(car_info_list &car_database) {
+void menu2(car_info_list &car_database, string filename_to_write) {
   while (true) {
     clear_screen();
     std::cout << "Display/Edit Car Info & Booking Info Menu" << '\n';
@@ -88,7 +88,7 @@ void menu2(car_info_list &car_database) {
       max_menu = 2;
       break;
     case 4:
-       generate_report(car_database);
+      generate_report(car_database);
       continue;
       break;
     case 5:
@@ -177,7 +177,7 @@ void menu2(car_info_list &car_database) {
           break;
         default:
           if (validation_for_deciaml_number(input_min))
-            validation = 1;
+              validation = 1;
           else
             std::cerr << input_min
                       << " -the input must consist of decimal number only"
@@ -326,7 +326,7 @@ void menu2(car_info_list &car_database) {
           car_database.delete_car(selected_car->content.getplat_no());
         }
       } while (input_2 == -1);
-      write_2_file(car_database,"car.txt");
+      write_2_file(car_database, "car.txt");
     }
     pause();
   }
@@ -335,7 +335,8 @@ void menu2(car_info_list &car_database) {
 int main() {
   car_info_list car_database;
   queue<string> car_info_raw;
-  string filename;
+  string filename_to_read;
+  string filename_to_write = "car.txt";
   string plate_no, car_model, color;
   float rental_prize_float = 0;
   while (true) {
@@ -345,16 +346,23 @@ int main() {
     std::cout << "1. Add Car Info Through Files" << '\n';
     std::cout << "2. Add Car Info Through Keyboard" << '\n';
     std::cout << "3. Display/Edit Car Info & Booking Info Menu" << '\n';
-    std::cout << ". Exit" << '\n';
+    std::cout << "4. Change the filename to save to. Current save to: "
+              << filename_to_write << '\n';
+    std::cout << "5. Exit" << '\n';
     std::cout << "Key in the menu number to go to" << '\n';
     int menu_no_selected = menu_selector_using_interger(1, 4);
     switch (menu_no_selected) {
     case 1:
       std::cout << "Key In the file name: " << '\n';
-      filename = get_string_from_user_input();
-      std::cout << "Reading file: " << filename << '\n';
-      read_raw_info(car_info_raw, filename);
-      extract_car_info_from_raw(car_database, car_info_raw);
+      filename_to_read = get_string_from_user_input();
+      filename_to_read = text_file_format(filename_to_read);
+      if (filename_to_read != "invalid") {
+        std::cout << "Reading file: " << filename_to_read << '\n';
+        read_raw_info(car_info_raw, filename_to_read);
+        extract_car_info_from_raw(car_database, car_info_raw);
+      } else {
+        std::cerr << "The fileformat is invalid... (*.txt or *)" << '\n';
+      }
       pause();
       break;
     case 2:
@@ -390,9 +398,19 @@ int main() {
       pause();
       break;
     case 3:
-      menu2(car_database);
+      menu2(car_database, filename_to_write);
       break;
     case 4:
+      std::cout << "Key In the file name to save to (Default: car.txt): "
+                << '\n';
+      filename_to_read = get_string_from_user_input();
+      filename_to_read = text_file_format(filename_to_read);
+      if (filename_to_read != "invalid") {
+        filename_to_write = filename_to_read;
+      } else {
+        std::cerr << "The fileformat is invalid... (*.txt or *)" << '\n';
+      }
+    case 5:
       return 0;
     default:
       break;
@@ -521,7 +539,7 @@ void read_raw_info(queue<std::string> &to_stored, std::string file_to_open) {
   openfile.open(file_to_open, std::ios::in);
   if (!openfile.is_open()) {
     std::cerr << "Unable to open file named " << file_to_open << "!\n";
-    return ;
+    return;
   } else {
     std::string line;
     while (!openfile.eof()) {
@@ -541,10 +559,10 @@ void erase_space_comer(string &input) {
       input.erase(0, 1);
     }
   }
-  if (!isalnum(input.at(input.length()-1))) {
-    cout << input << ' ' << input.at(input.length()-1) << endl;
-    while (!isalnum(input.at(input.length()-1))) {
-      input.erase(input.length()-1, 1);
+  if (!isalnum(input.at(input.length() - 1))) {
+    cout << input << ' ' << input.at(input.length() - 1) << endl;
+    while (!isalnum(input.at(input.length() - 1))) {
+      input.erase(input.length() - 1, 1);
     }
   }
 }
@@ -558,6 +576,15 @@ bool consist_alphabet_or_number(const std::string input) {
   return false;
 }
 
+bool consist_alphabet_or_number_only(const std::string input) {
+  for (unsigned int i = 0; i < input.length(); i++) // check one by one.
+  {
+    if (!isalnum(input.at(i))) // check for digit & alphabet
+      return false;
+  }
+  return true;
+}
+
 bool validation_for_deciaml_number(const std::string input) {
   for (unsigned int i = 0; i < input.length(); i++) // check one by one.
   {
@@ -565,13 +592,16 @@ bool validation_for_deciaml_number(const std::string input) {
          (input.at(i) != '.'))) // check for digit&decimal point
       return false;
   }
-  return true;
+  if(stof(input)>=0)
+    return true;
+  else
+    return false;
 }
 
 bool validation_for_alphabet(const std::string input) {
   for (unsigned int i = 0; i < input.length(); i++) // check one by one.
   {
-    if (!(isalpha(input.at(i)) || isblank(input.at(i) ))) // check for alphabet
+    if (!(isalpha(input.at(i)) || isblank(input.at(i)))) // check for alphabet
       return false;
   }
   return true;
@@ -594,6 +624,17 @@ bool validation_for_plate_number(const std::string input) {
       if (isdigit(input.at(i)))
         return true;
   return false;
+}
+
+string text_file_format(std::string input) {
+  if (consist_alphabet_or_number_only(input)) {
+    return input + ".txt";
+  }
+  string temp = input.substr(input.length() - 4, 4);
+  if (temp == ".txt") {
+    return input;
+  }
+  return "invalid";
 }
 
 void extract_car_info_from_raw(car_info_list &car_database,
@@ -638,12 +679,14 @@ void extract_car_info_from_raw(car_info_list &car_database,
                   << '\n';
       } else {
         std::cout << "Validation Checked" << '\n';
-        std::cout<<plate_no<<endl;
+        std::cout << plate_no << endl;
         rental_prize_float = stof(rental_prize);
         std::cout << "rental prize is converted into float" << '\n';
         car_database.insert_car(plate_no, car_model, color, rental_prize_float);
         std::cout << "Insert into Database Finished" << '\n';
-        std::cout << "---------------------------------------------------------------------------" << '\n';
+        std::cout << "---------------------------------------------------------"
+                     "------------------"
+                  << '\n';
       }
     }
     raw_info.delQueue();
@@ -651,17 +694,20 @@ void extract_car_info_from_raw(car_info_list &car_database,
   return;
 }
 
-void write_2_file(car_info_list &car_database,string filename){
-  std::cout << "Saving into file named: "<<filename << '\n';
+void write_2_file(car_info_list &car_database, string filename) {
+  std::cout << "Saving into file named: " << filename << '\n';
   std::ofstream writefile(filename, std::ios::trunc);
   if (writefile.is_open()) {
     car_database.sort_car_info_list("default");
-    nodeType<car_info>* current = car_database.get_car_by_index(0);
-    while(current!=NULL)
-    {writefile << current->content.getplat_no()<<", "<<current->content.getcar_model()<<", "<<current->content.getcar_color()<<", "<<current->content.getrental_prize()<<endl;
-    current=current->next_node;
+    nodeType<car_info> *current = car_database.get_car_by_index(0);
+    while (current != NULL) {
+      writefile << current->content.getplat_no() << ", "
+                << current->content.getcar_model() << ", "
+                << current->content.getcar_color() << ", "
+                << current->content.getrental_prize() << endl;
+      current = current->next_node;
     }
-    writefile<<endl;
+    writefile << endl;
     writefile.close();
   }
 }

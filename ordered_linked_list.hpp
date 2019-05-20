@@ -22,9 +22,11 @@ protected:
   nodeType<Type> *first_node;
   nodeType<Type> *last_node;
   int total_number_of_node=0;
+  display_item* display_measurement;
 public:
     ordered_linked_list();  //Initialize the ordered_linked_list
     ~ordered_linked_list(); //Destroy the ordered_linked_list
+    void set_display_item(display_item*);
     bool is_empty();  //Check if the list is empty and return true if it is empty vise vesa.
     int length_of_list(); //Return the total number of node contain in the list.
     nodeType<Type> * get_item_by_index(int index); //Return the node(content in the list) of given index(the position of the node).First node is 0.
@@ -35,6 +37,8 @@ public:
     void copy_from(ordered_linked_list<Type>);  //copy the whole list to another linked list.
     int binary_search(Type);//binary search for the plat number
     void display(); //display the list in table form.
+    void assign_first_node(nodeType<Type>*);
+    void assign_last_node(nodeType<Type>*);
 };
 
 

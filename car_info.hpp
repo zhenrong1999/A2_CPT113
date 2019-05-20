@@ -21,13 +21,16 @@ protected:
   float rental_prize = 0;
   int rental_day = 0;
   float rental_sales = 0;
-
+  display_item* display_measurement;
 public:
   void display();
   car_info();
   car_info(string);
   car_info(string, string, string, float);
+  car_info(string plat_no_in, string car_model_in, string color_in,
+                     float rental_prize_in,int rental_day_in, float rental_sales_in);
   ~car_info();
+  void set_display_item(display_item*);
   string getplat_no();
   string getcar_model();
   string getcar_color();
@@ -45,6 +48,7 @@ public:
   bool operator<=(car_info &comparing);
   bool operator>(car_info &comparing);
   bool operator<(car_info &comparing);
+  car_info operator+(car_info &comparing);
   friend ostream &operator<<(ostream &, const car_info &);
 };
 

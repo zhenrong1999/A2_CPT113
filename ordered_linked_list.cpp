@@ -27,6 +27,11 @@ template <class Type> ordered_linked_list<Type>::~ordered_linked_list() {
     }
   }
 }
+template <class Type>
+void ordered_linked_list<Type>::set_display_item(display_item* display_item_in){
+  display_measurement=display_item_in;
+}
+
 template <class Type> bool ordered_linked_list<Type>::is_empty() {
   if (first_node == NULL)
     return true;
@@ -246,8 +251,16 @@ template <class Type> void ordered_linked_list<Type>::display() {
   int count = 1;
   nodeType<Type> *current_node = first_node;
   while (current_node != NULL) {
-    cout << setw(3) << left << count << current_node->content << endl;
+    cout << setw(display_measurement->max_length_of_list_no) << left << count << current_node->content << endl;
     current_node = current_node->next_node;
     count++;
   }
+}
+template <class Type>
+void ordered_linked_list<Type>::assign_first_node(nodeType<Type>*input_node){
+first_node=input_node;
+}
+template <class Type>
+void ordered_linked_list<Type>::assign_last_node(nodeType<Type>*input_node){
+last_node=input_node;
 }
