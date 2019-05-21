@@ -646,8 +646,13 @@ int main() {
       pause();
       break;
     case 3:
-      menu2(car_database, filename_to_write);
+    if(car_database.length_of_list()!=0)
+      {menu2(car_database, filename_to_write);
       write_2_file(car_database, filename_to_write);
+      }else {
+        cout<<"The car database is empty."<<'\n';
+        pause();
+      }
       break;
     case 4:
       std::cout << "Key In the file name to save to (Default: car.txt): "
