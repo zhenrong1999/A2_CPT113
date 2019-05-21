@@ -34,9 +34,11 @@ public:
   int getrental_day();
   float getrental_sales();
   int getnumber_of_car();
+  void change_car_model(std::string);
   void change_rental_prize(float);
   void change_count(int);
   void add_rental_day(int);
+  void display();
   bool operator==(car_model_type &comparing);
   bool operator!=(car_model_type &comparing);
   bool operator>=(car_model_type &comparing);

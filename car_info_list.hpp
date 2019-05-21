@@ -13,12 +13,11 @@
 #include "car_info.hpp"
 #include "car_model_type.hpp"
 #include "ordered_linked_list.hpp"
-#include <iostream>
 #include <cmath>
+#include <iostream>
 
 class car_info_list : protected ordered_linked_list<car_info> {
 private:
-  
   ordered_linked_list<car_model_type> car_model_list;
   string sorted_mode = "default"; // the default is sorted by plate no. Other
                                   // option is sort by car model
@@ -34,7 +33,8 @@ public:
   void edit_car(string, string, string, float, int);
   void edit_rental_prize(string, float, int);
   void car_model_changes_rental_prize(string car_model_in,
-                                      float rental_prize_in, int rental_day_in);
+                                      float rental_prize_in);
+  void car_model_changes_car_model_in(string car_model_ori,string car_model_change);
   void delete_car(string plate_no);
   void delete_car(int);
   comparingNodeType<string, nodeType<car_info> *> *
@@ -48,11 +48,15 @@ public:
   int search_car_model_list(string);
   nodeType<car_info> *get_car_by_index(int index);
   nodeType<car_info> *get_car(car_info);
+  nodeType<car_model_type> *get_car_model_type_by_index(int index);
+  void table_form_display(string section, car_info total, int count);
+  void table_form_display(string section, car_model_type total, int count);
   void display(); // display all the car info in a table.
   void display_selected(string mode, string, string);
   void display_car_model();
-  car_model_type sum_of_all();
-  car_info sum_of_selection();
+  car_info sum_of_all();
+  car_model_type sum_of_all_car_model();
+  display_item *get_display_measurement();
 };
 
 #endif /* car_info_list_hpp */

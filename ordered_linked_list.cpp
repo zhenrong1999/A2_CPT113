@@ -94,7 +94,8 @@ void ordered_linked_list<Type>::insert_item(Type input_content) {
     first_node = last_node = new nodeType<Type>;
     first_node->content = input_content;
     first_node->next_node = NULL;
-  } else if (input_content < first_node->content) {
+  }
+   else if (input_content < first_node->content) {
     nodeType<Type> *temp = new nodeType<Type>;
     temp->content = input_content;
     temp->next_node = first_node;
@@ -109,6 +110,10 @@ void ordered_linked_list<Type>::insert_item(Type input_content) {
     std::cout << "Change in last node." << '\n';
   } else {
     nodeType<Type> *current = first_node;
+    if (current->content == input_content) {
+      std::cerr << "The same input content has been found!" << '\n';
+      return;
+    }
     while (current->next_node->content < input_content) {
       if (current->content == input_content) {
         std::cerr << "The same input content has been found!" << '\n';
@@ -119,13 +124,20 @@ void ordered_linked_list<Type>::insert_item(Type input_content) {
         {break;}
       }
     }
+
+    if(current->next_node->content==input_content){
+      std::cerr << "The same input content has been found!" << '\n';
+      return;
+    }
+
+
     nodeType<Type> *temp = new nodeType<Type>;
     temp->content = input_content;
     temp->next_node = current->next_node;
     current->next_node = temp;
     std::cout << "Change in between nodes." << '\n';
   }
-  total_number_of_node++;
+    total_number_of_node++;
 }
 
 template <class Type> void ordered_linked_list<Type>::delete_index(int index) {
@@ -211,7 +223,7 @@ void ordered_linked_list<Type>::copy_from(ordered_linked_list<Type> original) {
 
 template <class Type>
 int ordered_linked_list<Type>::binary_search(Type to_search) {
-  std::cout << "Seacrhing for "<< to_search << "......" << '\n';
+  std::cout << "Seacrhing for " << "......" << '\n';
   if(is_empty()||to_search<first_node->content||to_search>last_node->content)
     return -1;
   if(to_search==first_node->content)

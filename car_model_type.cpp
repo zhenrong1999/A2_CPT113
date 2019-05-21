@@ -43,7 +43,9 @@ car_model_type::~car_model_type() {}
 void car_model_type::set_display_item(display_item* display_item_in){
   display_measurement=display_item_in;
 }
-
+void car_model_type::change_car_model(std::string car_model_in){
+  car_model=car_model_in;
+}
 
 void car_model_type::change_rental_prize(float rental_prize_in) {
   rental_prize = rental_prize_in;
@@ -106,6 +108,17 @@ bool car_model_type::operator<(car_model_type &comparing) {
     return true;
   return false;
 }
+
+void car_model_type::display(){
+  std::cout << std::left << std::setw(18) << "1. Car Model: " << car_model << std::endl;
+  std::cout << std::left << std::setw(18) << "2. Number of Cars: " << count << std::endl;
+  std::cout << std::left << std::setw(18) << "3. Rental Prize: " << rental_prize << std::endl;
+  std::cout << std::left << std::setw(18) << "4. Rental Day: " << rental_day << std::endl;
+  std::cout << std::left << std::setw(18) << "5. Rental Sales: " << rental_sales << std::endl;
+
+
+}
+
 car_model_type car_model_type::operator+(car_model_type &comparing) {
   car_model_type total("Total", rental_prize + comparing.rental_prize,
                        rental_day + comparing.rental_day,
@@ -115,8 +128,8 @@ car_model_type car_model_type::operator+(car_model_type &comparing) {
 }
 
 std::ostream &operator<<(std::ostream &out, const car_model_type &output) {
-  out << std::left << '|' << std::setw(20) << output.car_model << '|' << std::setw(12) << output.rental_prize << '|' << std::setw(12)
-      << output.rental_day << '|' << std::setw(12) << output.rental_sales
+  out << std::left << '|' << std::setw(output.display_measurement->max_length_of_car_model) << output.car_model << '|' << std::setw(output.display_measurement->max_length_of_rental_prize) << output.rental_prize << '|' << std::setw(output.display_measurement->max_length_of_rental_day)
+      << output.rental_day << '|' << std::setw(output.display_measurement->max_length_of_rental_sales) << output.rental_sales
       << '|';
   return out;
 }

@@ -17,9 +17,11 @@ int menu_selector_using_interger(int min, int max);
 string get_string_from_user_input();
 void clear_screen();
 void pause();
+void draw_line(display_item* display_measurement,string line);
 string car_edit(int i, car_info_list &car_database);
 void read_raw_info(queue<std::string> &to_stored, std::string file_to_open);
 void erase_space_comer(string &input);
+string string_to_upper(string input);
 bool consist_alphabet_or_number(const std::string input);
 bool consist_alphabet_or_number_only(const std::string input);
 bool validation_for_deciaml_number(const std::string input);
@@ -30,16 +32,262 @@ void extract_car_info_from_raw(car_info_list &car_database,
                                queue<string> &raw_info);
 void write_2_file(car_info_list &car_database, string filename);
 
-void generate_report(car_info_list &car_database) {
+void calculator_for_rental_sales(car_info_list &car_database) {
+  display_item* display_measurement=car_database.get_display_measurement();
+  int menu_no_selected;
+  int menu_no_selected_2;
   string to_search;
+  int index_to_search;
+  car_database.sort_car_model_list("default");
+  ordered_linked_list<car_model_type> model_temp_list;
+  model_temp_list.set_display_item(display_measurement);
   do {
     clear_screen();
+    std::cout << "List Of All Car Model " << '\n';
     car_database.display_car_model();
-    std::cout << "Search Car Model " << '\n';
-    to_search = get_string_from_user_input();
-    //scout << car_database.search_car_model_list(to_search) << endl;
+    draw_line(display_measurement,"=");
+    std::cout << "Calculator for rental sales" << '\n';
+    draw_line(display_measurement,"=");
+    if(!model_temp_list.is_empty())
+    {
+      std::cout << "Workspace for Calculator" << '\n';
+      draw_line(display_measurement,"*");
+      car_database.table_form_display("header", car_model_type(), 0);
+      model_temp_list.display();
+      draw_line(display_measurement,"*");
+    }
+    std::cout << "1. Add Car Model" << '\n';
+    std::cout << "2. Edit Car Model" << '\n';
+    std::cout << "3. Total Up" << '\n';
+    std::cout << "Key in the menu number to go to" << '\n';
+    menu_no_selected = menu_selector_using_interger(1, 3);
+    if (menu_no_selected == 1) {
+      std::cout << "Get Details of One Car Model + Edit" << '\n';
+      std::cout << "1. Provide the car model " << '\n';
+      std::cout << "2. Provide the index no. of the car model" << '\n';
+      std::cout << "Comment: Index number of the car is the counting number of "
+                   "the car model ordered in car model."
+                << '\n';
+      std::cout << "Comment: Index number can be seen in List Of All Car Model "
+                   "order by "
+                   "car model. in the most left side of the car model."
+                << '\n';
+      std::cout << "Key in the menu number to go to" << '\n';
+      menu_no_selected_2 = menu_selector_using_interger(1, 2);
+      switch (menu_no_selected_2) {
+      case 1:
+        do {
+          std::cout << "Key in the car model: " << '\n';
+          to_search = string_to_upper(get_string_from_user_input());
+          if (consist_alphabet_or_number_only(to_search))
+            break;
+          else {
+            std::cerr << to_search << " -"
+                      << "car model must be alphabet or number only" << '\n';
+          }
+        } while (to_search != "EXIT" && to_search != "-1");
+        index_to_search = car_database.search_car_model_list(to_search);
+        if (index_to_search == -1) {
+          std::cerr << "The car model is not found." << '\n';
+        }
+        break;
+      case 2:
+        do {
+
+          std::cout << "Key in the Index Number of the car: " << '\n';
+          index_to_search =
+              menu_selector_using_interger(1, car_database.length_of_list());
+        } while (index_to_search == -99);
+        index_to_search--;
+        break;
+      }
+      if(index_to_search>=0)
+      {
+        nodeType<car_model_type> *to_add = car_database.get_car_model_type_by_index(index_to_search);
+        car_model_type adding(to_add->content.getcar_model(),to_add->content.getrental_prize());
+        std::cout << "Key in the Rental day of the car model: " << '\n';
+        int rental_day=menu_selector_using_interger(0, std::numeric_limits<int>::max());
+        if(rental_day>0){
+          adding.add_rental_day(rental_day);
+          adding.set_display_item(display_measurement);
+          model_temp_list.insert_item(adding);
+        }
+      }
+    }
+    else if(menu_no_selected==2){
+      std::cout<<"Key in the Line Number of the Workspace"<<'\n';
+      menu_no_selected_2=menu_selector_using_interger(1,model_temp_list.length_of_list());
+      menu_no_selected_2--;
+      cout<<"Change the Rental Day to: "<<'\n';
+      cout<<"Comment to delete key in 0"<<'\n';
+      int rental_day=menu_selector_using_interger(0, std::numeric_limits<int>::max());
+      nodeType<car_model_type> *to_edit = model_temp_list.get_item_by_index(menu_no_selected_2-1);
+      if(rental_day>0){
+        int rental_day_to_change=rental_day-to_edit->content.getrental_day();
+        to_edit->content.add_rental_day(rental_day_to_change);
+      }
+      else if(rental_day==0)
+      {
+        model_temp_list.delete_index(menu_no_selected_2);
+      }
+
+    }
+    else
+    {
+      if(!model_temp_list.is_empty())
+      {
+        car_model_type total;
+        for (int i = 0; i < model_temp_list.length_of_list(); i++) {
+          total=total+model_temp_list.get_item_by_index(i)->content;
+        }
+        std::cout << "Total Rental Sales = "<< total.getrental_sales()<< '\n';
+      }
+      std::cout << "Leaving this calculator." << '\n';
+      pause();
+      return;
+    }
     pause();
-  } while (to_search != "exit");
+  } while (true);
+}
+
+void generate_report(car_info_list &car_database,string filename_to_write) {
+  int menu_no_selected;
+  int menu_no_selected_2;
+  int max_menu = 5;
+  string to_search;
+  int index_to_search;
+  do {
+    clear_screen();
+    car_database.sort_car_model_list("default");
+    std::cout << "List Of All Car Model " << '\n';
+    car_database.display_car_model();
+    draw_line(car_database.get_display_measurement(),"-");
+    std::cout << "1. Get Details of One Car Model + Edit" << '\n';
+    std::cout << "2. Calculate Rental Sales for Car Models without "
+                 "saving.(Calculator)"
+              << '\n';
+    std::cout << "3. Display List Of All Car Model with different order. "
+              << '\n';
+    std::cout << "4. Back" << '\n';
+    std::cout << "Key in the menu number to go to" << '\n';
+    menu_no_selected = menu_selector_using_interger(1, 4);
+    clear_screen();
+    switch (menu_no_selected) {
+    case 1:
+      std::cout << "Get Details of One Car Model + Edit" << '\n';
+      std::cout << "1. Provide the car model " << '\n';
+      std::cout << "2. Provide the index no. of the car model" << '\n';
+      std::cout << "Comment: Index number of the car is the counting number of "
+                   "the car model ordered in car model."
+                << '\n';
+      std::cout << "Comment: Index number can be seen in List Of All Car Model "
+                   "order by "
+                   "car model. in the most left side of the car model."
+                << '\n';
+      max_menu = 2;
+      break;
+    case 2:
+      calculator_for_rental_sales(car_database);
+      break;
+    case 3:
+
+      std::cout << "Display List Of All Car Model with different order. "
+                << '\n';
+      std::cout << "Order by:" << '\n';
+      std::cout << "1. Car Model" << '\n';
+      std::cout << "2. Rental Prize" << '\n';
+      std::cout << "3. Rental Days" << '\n';
+      std::cout << "4. Rental Sales" << '\n';
+      std::cout << "5. Go Back" << '\n';
+      break;
+    case 4:
+      return;
+    }
+    if (menu_no_selected == 2)
+      continue;
+
+    std::cout << "Key in the menu number to go to" << '\n';
+    menu_no_selected_2 = menu_selector_using_interger(1, max_menu);
+
+    if (menu_no_selected == 1) {
+      switch (menu_no_selected_2) {
+      case 1:
+        do {
+          clear_screen();
+          std::cout << "Key in the car model: " << '\n';
+          to_search = string_to_upper(get_string_from_user_input());
+          if (consist_alphabet_or_number_only(to_search))
+            break;
+          else {/* message */
+            std::cerr << to_search << " -"
+                      << "car model must be alphabet or number only" << '\n';
+          }
+        } while (to_search != "EXIT" && to_search != "-1");
+        index_to_search = car_database.search_car_model_list(to_search);
+        if (index_to_search == -1) {
+          std::cerr << "The car model is not found." << '\n';
+        }
+        break;
+      case 2:
+        do {
+          clear_screen();
+          std::cout << "Key in the Index Number of the car: " << '\n';
+          index_to_search =
+              menu_selector_using_interger(1, car_database.length_of_list());
+        } while (index_to_search == -99);
+        index_to_search--;
+        break;
+      }
+      if (index_to_search >= 0) {
+        nodeType<car_model_type> *temp =
+            car_database.get_car_model_type_by_index(index_to_search);
+        temp->content.display();
+        car_database.display_selected("car model", temp->content.getcar_model(),
+                                      temp->content.getcar_model());
+        std::cout << "Editing Instruction" << '\n';
+        std::cout << "You are allowed to change the car model name and the rental prize only." << '\n';
+        std::cout << "Key in 1 for car model name" << '\n';
+        std::cout << "Key in 2 for car rental prize" << '\n';
+        std::cout << "Key in 3 for going back to last menu" << '\n';
+        std::cout << "Key in the menu number to go to" << '\n';
+        menu_no_selected_2=menu_selector_using_interger(1,3);
+        string to_change=car_edit(menu_no_selected_2*2,car_database);
+        if(to_change != "EXIT" && to_change != "-1")
+          {switch (menu_no_selected_2) {
+            case 1:
+            car_database.car_model_changes_car_model_in(temp->content.getcar_model(),to_change);
+            temp->content.change_car_model(to_change);
+            break;
+            case 2:
+            car_database.car_model_changes_rental_prize( temp->content.getcar_model(), stof(to_change));
+            temp->content.change_rental_prize(stof(to_change));
+            case 3:
+            break;
+          }
+          write_2_file(car_database, filename_to_write);
+        }
+
+      }
+    } else if (menu_no_selected == 3) {
+      switch (menu_no_selected_2) {
+      case 1:
+        car_database.sort_car_model_list("car model");
+        break;
+      case 2:
+        car_database.sort_car_model_list("rental prize");
+        break;
+      case 3:
+        car_database.sort_car_model_list("rental day");
+        break;
+      case 4:
+        car_database.sort_car_model_list("rental sales");
+        break;
+      }
+      car_database.display_car_model();
+    }
+
+    pause();
+  } while (menu_no_selected != -1);
 }
 
 void menu2(car_info_list &car_database, string filename_to_write) {
@@ -49,7 +297,7 @@ void menu2(car_info_list &car_database, string filename_to_write) {
     std::cout << "1. Display All" << '\n';
     std::cout << "2. Display Selected" << '\n';
     std::cout << "3. Edit/Delete Car Infomation + Add Booking Info" << '\n';
-    std::cout << "4. Generate Summary" << '\n';
+    std::cout << "4. Car Model Summary" << '\n';
     std::cout << "5. Back to main menu" << '\n';
     std::cout << "Key in the menu number to go to" << '\n';
     int menu_no_selected = menu_selector_using_interger(1, 4);
@@ -88,7 +336,7 @@ void menu2(car_info_list &car_database, string filename_to_write) {
       max_menu = 2;
       break;
     case 4:
-      generate_report(car_database);
+      generate_report(car_database,filename_to_write);
       continue;
       break;
     case 5:
@@ -156,15 +404,15 @@ void menu2(car_info_list &car_database, string filename_to_write) {
           std::cout << "Key in the minimum value: " << '\n';
           break;
         }
-        input_min = get_string_from_user_input();
+        input_min = string_to_upper(get_string_from_user_input());
         switch (menu_no_selected_2) {
         case 1:
-          if (validation_for_plate_number(input_min))
+          if (consist_alphabet_or_number_only(input_min))
             validation = 1;
           else
             std::cerr
                 << input_min << " -"
-                << "the input must be alphabet and at least one number only"
+                << "the input must be an alphabet or a number only"
                 << '\n';
           break;
         case 2:
@@ -177,28 +425,28 @@ void menu2(car_info_list &car_database, string filename_to_write) {
           break;
         default:
           if (validation_for_deciaml_number(input_min))
-              validation = 1;
+            validation = 1;
           else
             std::cerr << input_min
                       << " -the input must consist of decimal number only"
                       << '\n';
         }
-      } while (input_min != "exit" && input_min != "-1" && validation == 0);
+      } while (input_min != "EXIT" && input_min != "-1" && validation == 0);
       if (menu_no_selected_3 == 1) {
         input_max = input_min;
       } else if (menu_no_selected_3 == 2) {
         validation = 0;
         do {
           std::cout << "Key in the maximum value: " << '\n';
-          input_max = get_string_from_user_input();
+          input_max = string_to_upper(get_string_from_user_input());
           switch (menu_no_selected_2) {
           case 1:
-            if (validation_for_plate_number(input_max))
+            if (consist_alphabet_or_number_only(input_max))
               validation = 1;
             else
               std::cerr
                   << input_max << " -"
-                  << "the input must be alphabet and at least one number only"
+                  << "the input must be an alphabet or a number only"
                   << '\n';
             break;
           case 2:
@@ -217,9 +465,9 @@ void menu2(car_info_list &car_database, string filename_to_write) {
                         << " -the input must consist of decimal number only"
                         << '\n';
           }
-        } while (input_max != "exit" && input_max != "-1" && validation == 0);
+        } while (input_max != "EXIT" && input_max != "-1" && validation == 0);
       }
-      if (input_max == "exit" && input_max == "-1")
+      if (input_max == "EXIT" && input_max == "-1")
         continue;
 
       switch (menu_no_selected_2) {
@@ -252,8 +500,8 @@ void menu2(car_info_list &car_database, string filename_to_write) {
       case 1:
         do {
           clear_screen();
-          std::cout << "Key in the Plate No. if the car: " << '\n';
-          input_1 = get_string_from_user_input();
+          std::cout << "Key in the Plate No. of the car: " << '\n';
+          input_1 = string_to_upper(get_string_from_user_input());
           if (validation_for_plate_number(input_1))
             break;
           else {
@@ -262,7 +510,7 @@ void menu2(car_info_list &car_database, string filename_to_write) {
                 << "plate number must be alphabet and at least one number only"
                 << '\n';
           }
-        } while (input_1 != "exit" && input_1 != "-1");
+        } while (input_1 != "EXIT" && input_1 != "-1");
         selected_car = car_database.get_car(car_info(input_1));
         break;
       case 2:
@@ -326,7 +574,7 @@ void menu2(car_info_list &car_database, string filename_to_write) {
           car_database.delete_car(selected_car->content.getplat_no());
         }
       } while (input_2 == -1);
-      write_2_file(car_database, "car.txt");
+      write_2_file(car_database, filename_to_write);
     }
     pause();
   }
@@ -348,7 +596,7 @@ int main() {
     std::cout << "3. Display/Edit Car Info & Booking Info Menu" << '\n';
     std::cout << "4. Change the filename to save to. Current save to: "
               << filename_to_write << '\n';
-    std::cout << "5. Exit" << '\n';
+    std::cout << "5. EXIT" << '\n';
     std::cout << "Key in the menu number to go to" << '\n';
     int menu_no_selected = menu_selector_using_interger(1, 4);
     switch (menu_no_selected) {
@@ -370,7 +618,7 @@ int main() {
       std::cout << "Keyboard Mode" << '\n';
       for (int i = 1; i < 5; i++) {
         string temp = car_edit(i, car_database);
-        if (temp == "-1" || temp == "exit") {
+        if (temp == "-1" || temp == "EXIT") {
           std::cout << "Discarding the data key in just now" << '\n';
           break;
         } else {
@@ -399,6 +647,7 @@ int main() {
       break;
     case 3:
       menu2(car_database, filename_to_write);
+      write_2_file(car_database, filename_to_write);
       break;
     case 4:
       std::cout << "Key In the file name to save to (Default: car.txt): "
@@ -410,7 +659,9 @@ int main() {
       } else {
         std::cerr << "The fileformat is invalid... (*.txt or *)" << '\n';
       }
+      break;
     case 5:
+      write_2_file(car_database, filename_to_write);
       return 0;
     default:
       break;
@@ -469,20 +720,35 @@ void pause() {
   cin.get();
 }
 
+void draw_line(display_item* display_measurement,string line){
+  int total_length_of_line=5;
+  total_length_of_line+=display_measurement->max_length_of_list_no;
+  total_length_of_line+=display_measurement->max_length_of_plate_no = 14;
+  total_length_of_line+=display_measurement->max_length_of_car_model = 20;
+  total_length_of_line+=display_measurement->max_length_of_colour = 12;
+  total_length_of_line+=display_measurement->max_length_of_rental_prize = 25;
+  total_length_of_line+=display_measurement->max_length_of_rental_day = 12;
+  total_length_of_line+=display_measurement->max_length_of_rental_sales = 16;
+  for (int i = 0; i < total_length_of_line; i++) {
+    std::cout << line;
+  }
+  std::cout << '\n';
+}
+
 string car_edit(int i, car_info_list &car_database) {
   // To edit car infomation: 1 for plate number ; 2 for car model; 3 for car
-  // colour ; 4 for car rental prize
+  // colour ; 4 for car rental prize ; 5 for car rental day
   string to_change;
   switch (i) {
   case 1: // plate no.
     do {
       std::cout << "The car plate number: " << '\n';
-      to_change = get_string_from_user_input();
+      to_change = string_to_upper(get_string_from_user_input());
       if (validation_for_plate_number(to_change))
         break;
       else
         std::cout << "Please try again." << '\n';
-    } while (to_change != "exit" && to_change != "-1");
+    } while (to_change != "EXIT" && to_change != "-1");
     if (car_database.search(to_change) != -1) {
       std::cout << "The same car plate number is in the database." << '\n';
       to_change = "-1";
@@ -491,32 +757,32 @@ string car_edit(int i, car_info_list &car_database) {
   case 2: // car model
     do {
       std::cout << "The car model: " << '\n';
-      to_change = get_string_from_user_input();
+      to_change = string_to_upper(get_string_from_user_input());
       if (validation_for_alphabet(to_change))
         break;
       else
         std::cout << "Please try again." << '\n';
-    } while (to_change != "exit" && to_change != "-1");
+    } while (to_change != "EXIT" && to_change != "-1");
     break;
   case 3: // car colour
     do {
       std::cout << "The car colour: " << '\n';
-      to_change = get_string_from_user_input();
+      to_change = string_to_upper(get_string_from_user_input());
       if (validation_for_alphabet(to_change))
         break;
       else
         std::cout << "Please try again." << '\n';
-    } while (to_change != "exit" && to_change != "-1");
+    } while (to_change != "EXIT" && to_change != "-1");
     break;
   case 4: // rental prize
     do {
       std::cout << "The car rental prize: " << '\n';
-      to_change = get_string_from_user_input();
+      to_change = string_to_upper(get_string_from_user_input());
       if (validation_for_deciaml_number(to_change))
         break;
       else
         std::cout << "Please try again." << '\n';
-    } while (to_change != "exit" && to_change != "-1");
+    } while (to_change != "EXIT" && to_change != "-1");
     break;
   case 5:
     int day_to_change;
@@ -567,6 +833,14 @@ void erase_space_comer(string &input) {
   }
 }
 
+string string_to_upper(string input){
+  string temp;
+  for (unsigned int i = 0; i < input.length(); i++){
+    temp += toupper(input.at(i));
+  }
+  return temp;
+}
+
 bool consist_alphabet_or_number(const std::string input) {
   for (unsigned int i = 0; i < input.length(); i++) // check one by one.
   {
@@ -579,7 +853,7 @@ bool consist_alphabet_or_number(const std::string input) {
 bool consist_alphabet_or_number_only(const std::string input) {
   for (unsigned int i = 0; i < input.length(); i++) // check one by one.
   {
-    if (!isalnum(input.at(i))) // check for digit & alphabet
+    if (!(isalnum(input.at(i))||isblank(input.at(i)))) // check for digit & alphabet
       return false;
   }
   return true;
@@ -592,7 +866,7 @@ bool validation_for_deciaml_number(const std::string input) {
          (input.at(i) != '.'))) // check for digit&decimal point
       return false;
   }
-  if(stof(input)>=0)
+  if (stof(input) >= 0)
     return true;
   else
     return false;
@@ -646,6 +920,7 @@ void extract_car_info_from_raw(car_info_list &car_database,
       raw_info.delQueue();
       continue;
     }
+    line=string_to_upper(line);
     stringstream ss;
     ss.str(line);
     string plate_no, car_model, color, rental_prize;
@@ -662,7 +937,7 @@ void extract_car_info_from_raw(car_info_list &car_database,
         erase_space_comer(color);
       if (rental_prize.empty()) {
         rental_prize = color;
-        color = "no info";
+        color = "NO INFO";
       } else
         erase_space_comer(rental_prize);
       std::cout << "Erase Finished" << '\n';
@@ -684,9 +959,7 @@ void extract_car_info_from_raw(car_info_list &car_database,
         std::cout << "rental prize is converted into float" << '\n';
         car_database.insert_car(plate_no, car_model, color, rental_prize_float);
         std::cout << "Insert into Database Finished" << '\n';
-        std::cout << "---------------------------------------------------------"
-                     "------------------"
-                  << '\n';
+        draw_line(car_database.get_display_measurement(),"-");
       }
     }
     raw_info.delQueue();
